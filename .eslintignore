@@ -1,2 +1,6 @@
 *.js
-vite.config.ts
+*.css
+*.svg
+.next
+node_modules
+coverage

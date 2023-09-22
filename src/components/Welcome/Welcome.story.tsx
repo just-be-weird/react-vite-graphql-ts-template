@@ -1,4 +1,4 @@
-import { Welcome } from './Welcome';
+import { Welcome } from './index';
 
 export default {
   title: 'Welcome',

@@ -1,7 +1,9 @@
 {
   "name": "mantine-vite-template",
+  "description": "This starter Vite project includes a minimal setup useful for testing POCs and fun.",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.0.1",
+  "author": "Abhishek C Prajapati <17427511+just-be-weird@users.noreply.github.com>",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
@@ -13,12 +15,19 @@
     "jest": "jest",
     "jest:watch": "jest --watch",
     "test": "npm run typecheck && npm run prettier && npm run lint && npm run jest && npm run build",
+    "ff:check": "prettier --check \"**/*.{ts,tsx}\"",
+    "ff:write": "prettier --write \"**/*.{ts,tsx}\"",
     "storybook": "storybook dev -p 6006",
     "storybook:build": "storybook build"
   },
   "dependencies": {
+    "@apollo/client": "^3.8.4",
     "@mantine/core": "7.0.0",
     "@mantine/hooks": "7.0.0",
+    "@tabler/icons-react": "^2.34.0",
+    "axios": "^1.5.0",
+    "graphql": "^16.6.0",
+    "lodash": "^4.17.21",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.11.2"
@@ -62,6 +71,10 @@
     "storybook-dark-mode": "^3.0.0",
     "ts-jest": "^29.1.0",
     "typescript": "^5.0.4",
-    "vite": "^4.3.9"
+    "vite": "^4.3.9",
+    "vite-tsconfig-paths": "^4.2.1"
+  },
+  "engines": {
+    "node": "20.7.0"
   }
 }

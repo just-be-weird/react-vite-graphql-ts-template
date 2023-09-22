@@ -18,8 +18,9 @@
     "paths": {
       "@/*": ["./src/*"],
       "@test-utils": ["./test-utils"]
-    }
+    },
+    "typeRoots": ["node_modules/@types", "src/@types"]
   },
-  "include": ["src", "test-utils"],
-  "references": [{ "path": "./tsconfig.node.json" }]
+  "include": ["**/*.ts", "**/*.tsx"],
+  "references": [{ "path": "./tsconfig.jest.json" }]
 }
