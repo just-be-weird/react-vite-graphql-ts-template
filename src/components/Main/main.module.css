@@ -17,6 +17,7 @@
   );
   height: 20vh;
   width: 10vw;
+  min-width: 145px;
   padding: 1rem;
 }
 
@@ -24,6 +25,10 @@
 .boxes {
   height: 100%;
   display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+  gap: 0.5rem;
 }
 .box--1 {
 }
