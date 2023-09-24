@@ -17,14 +17,14 @@ export function Main(_props: Props) {
           Box 1
         </Card>
         <Card
-          className={cx(classes.box, classes['box--1'])}
+          className={cx(classes.box, classes['box--2'])}
           radius='md'
           shadow='md'
         >
           Box 2
         </Card>
         <Card
-          className={cx(classes.box, classes['box--1'])}
+          className={cx(classes.box, classes['box--3'])}
           radius='md'
           shadow='md'
         >
