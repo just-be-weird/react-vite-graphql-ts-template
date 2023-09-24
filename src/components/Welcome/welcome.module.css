@@ -3,7 +3,7 @@
   font-size: rem(20px);
   font-weight: 900;
   letter-spacing: rem(-2px);
-  margin-left: 24px;
+  margin-left: rem(32px);
 
   @media (max-width: $mantine-breakpoint-md) {
     font-size: rem(15px);
