@@ -24,3 +24,5 @@ Check the instruction on how to correctly set up the project 🔗 [setup](./setu
            ##### #####
            
 ```
+
+## How to separate the cards with a spacing of 8px (0.5rem)? What is gap, row-gap and column-gap?
