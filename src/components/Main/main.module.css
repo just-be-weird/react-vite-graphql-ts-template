@@ -27,6 +27,8 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  /* We use align items use 99% of the time to center the content. We use align
+  content use used when we've want to center the content of multiple lines.*/
   align-content: center;
   gap: 0.5rem;
 }
