@@ -1,6 +1,3 @@
-# Topic
-
-
 ## Project setup
 Check the instruction on how to correctly set up the project 🔗 [setup](./setup.md)
 
