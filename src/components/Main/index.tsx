@@ -5,31 +5,22 @@ import { Card } from '@mantine/core';
 
 type Props = {};
 
+const items = [1, 2, 3];
+
 export function Main(_props: Props) {
   return (
     <main className={classes.main}>
       <div className={classes.boxes}>
-        <Card
-          className={cx(classes.box, classes['box--1'])}
-          radius='md'
-          shadow='md'
-        >
-          Box 1
-        </Card>
-        <Card
-          className={cx(classes.box, classes['box--2'])}
-          radius='md'
-          shadow='md'
-        >
-          Box 2
-        </Card>
-        <Card
-          className={cx(classes.box, classes['box--3'])}
-          radius='md'
-          shadow='md'
-        >
-          Box 3
-        </Card>
+        {items.map((item) => (
+          <Card
+            className={cx(classes.box, classes[`box--${item}`])}
+            radius='md'
+            shadow='md'
+            key={item}
+          >
+            Box {item}
+          </Card>
+        ))}
       </div>
     </main>
   );
