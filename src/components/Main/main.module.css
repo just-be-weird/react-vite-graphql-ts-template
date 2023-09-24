@@ -22,6 +22,8 @@
 
 /***** Boxes ****/
 .boxes {
+  height: 100%;
+  display: flex;
 }
 .box--1 {
 }
