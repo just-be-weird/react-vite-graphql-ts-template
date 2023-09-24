@@ -9,3 +9,18 @@ Check the instruction on how to correctly set up the project 🔗 [setup](./setu
 #####   #####   #####  + #####   #####
 #####   #####   #####    #####   #####
 ```
+
+## Align the cards forming center T pattern.
+
+```text
+
+        ##### ##### #####
+        ##### ##### #####
+        ##### ##### #####
+        ##### ##### #####
+           ##### #####
+           ##### #####
+           ##### #####
+           ##### #####
+           
+```
