@@ -26,8 +26,11 @@
   display: flex;
 }
 .box--1 {
+  flex: 2;
 }
 .box--2 {
+  flex: 4;
 }
 .box--3 {
+  order: 1;
 }

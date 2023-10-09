@@ -5,7 +5,7 @@ import { Card } from '@mantine/core';
 
 type Props = {};
 
-const items = [1, 2, 3, 4, 5];
+    const items = [1, 2, 3, 4, 5];
 
 export function Main(_props: Props) {
   return (
