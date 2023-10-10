@@ -1,27 +1,27 @@
-import React from 'react';
+import React, { useState } from 'react';
 import classes from './main.module.css';
-import cx from 'clsx';
-import { Card } from '@mantine/core';
+// import { DirectoryNode, directoryTree, FileNode, FileTreeNode } from '@/data';
+// import {
+//   IconFileText,
+//   IconFolder,
+//   IconMinus,
+//   IconPlus
+// } from '@tabler/icons-react';
+// import { NavLink } from '@mantine/core';
 
-type Props = {};
 
-    const items = [1, 2, 3, 4, 5];
+/**
+ * Render a vs-code like file tree using directoryTree data.
+ *
+ * Icons:
+ * IconFileText, IconFolder, IconMinus, IconPlus
+ */
 
-export function Main(_props: Props) {
+
+export function Main() {
   return (
     <main className={classes.main}>
-      <div className={classes.boxes}>
-        {items.map((item) => (
-          <Card
-            className={cx(classes.box, classes[`box--${item}`])}
-            radius='md'
-            shadow='md'
-            key={item}
-          >
-            Box {item}
-          </Card>
-        ))}
-      </div>
+      {/* your code */}
     </main>
   );
 }
