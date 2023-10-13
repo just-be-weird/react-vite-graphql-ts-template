@@ -1,19 +1,57 @@
-import React, { useState } from 'react';
-import { Grid, Select } from '@mantine/core';
+import React, { useEffect, useState } from 'react';
+import { Grid, Select, Card, Image, Text, Dialog } from '@mantine/core';
+import { useDisclosure } from '@mantine/hooks';
 import { useQuery } from '@apollo/client';
+import cx from 'clsx';
 import { GET_ALL_CHARACTERS, GET_ALL_EPISODES } from '@/graphql/query';
 import classes from './main.module.css';
 
-// const randomList = (len, arr = []) => {
-//   const randomVal = Math.floor(Math.random() * len);
-//   const temp = [...arr];
-//   console.log('temp >>', temp, temp.length);
-//   if (temp.length === len) return temp;
-//   if (temp.length < len) {
-//     if (temp.some((item) => item === randomVal)) return randomList(len, temp);
-//     temp.push(randomVal);
-//   }
-// };
+/*
+Just for the Codeshare I'm merging the MyCard component here in the index.tsx file itself.
+*/
+
+// MyCard component
+const MyCard = ({ id, character, selectedCards, handleClick }) => (
+  <Card
+    className={cx(classes.box)}
+    radius='md'
+    shadow='md'
+    onClick={() => handleClick(id)}
+  >
+    {selectedCards && selectedCards.some((item: any) => item === id) ? (
+      <>
+        <Image radius='md' h='auto' fit='contain' src={character?.image} />
+        <Text fw={500}>{character?.name}</Text>
+      </>
+    ) : null}
+  </Card>
+);
+
+// Generate random array of given length with value of 0 to given length (excl.)
+const RandomList: any = (len: number, arr: Array<any> = []) => {
+  const randomVal: number = Math.floor(Math.random() * len);
+  const temp = [...arr];
+  if (temp.length < len) {
+    if (!(temp.length > 0 && temp.some((item) => item === randomVal))) {
+      temp.push(randomVal);
+    }
+    return RandomList(len, temp);
+  }
+  return temp;
+};
+
+// Generate one random character other than Rick & Morty
+const RandomChar: any = (allChars: Array<any>) => {
+  const randomIndex = Math.floor(Math.random() * allChars.length);
+  const randomCh = allChars[randomIndex];
+  if (
+    randomCh?.name.toLowerCase().startsWith('rick') ||
+    randomCh?.name.toLowerCase().startsWith('morty')
+  ) {
+    return RandomChar(allChars);
+  }
+  return randomCh;
+};
 
 /**
  * Ref
@@ -26,9 +64,15 @@ import classes from './main.module.css';
  */
 export function Main() {
   const [selectedEp, setSelectedEp] = useState('');
+  const [randomizedArr, setRandomizedArr] = useState([]);
+  const [threeChars, setThreeChars] = useState([]);
+  const [selectedCards, setSelectedCards] = useState([]);
+  const [isMatched, setMatched] = useState(false);
+
+  const [opened, { open, close }] = useDisclosure(false);
 
   const { loading, error, data } = useQuery(GET_ALL_EPISODES);
-  const selectDropdownData = [];
+  const selectDropdownData: any = [];
 
   if (data) {
     if (data?.episodes?.results) {
@@ -52,41 +96,78 @@ export function Main() {
     skip: !selectedEp,
   });
 
-  if (loading || loading2) return 'Loading...';
+  useEffect(() => {
+    if (selectedEp) {
+      setSelectedCards([]);
+      setRandomizedArr([]);
+      setThreeChars([]);
+    }
+  }, [selectedEp]);
 
-  if (error || error2) return `Error! ${error.message}`;
+  useEffect(() => {
+    const episodeCharacters = epChars?.episode?.characters;
+    if (episodeCharacters) {
+      const threeCharsArr: any = [
+        ...epChars.episode.characters.filter(
+          (item: any) =>
+            item?.name.toLowerCase().startsWith('rick') ||
+            item?.name.toLowerCase().startsWith('morty'),
+        ),
+        RandomChar(episodeCharacters),
+      ];
+      const list: any = [RandomList(3), RandomList(3), RandomList(3)];
+      setThreeChars(threeCharsArr);
+      setRandomizedArr(list);
+    }
+  }, [epChars]);
+
+  useEffect(() => {
+    if (
+      selectedCards &&
+      Array.isArray(selectedCards) &&
+      selectedCards.length === 2
+    ) {
+      const split0 = selectedCards[0].split('-');
+      const split1 = selectedCards[1].split('-');
+      const card0 =
+        randomizedArr[parseInt(split0[0], 10)][parseInt(split0[1], 10)];
+      const card1 =
+        randomizedArr[parseInt(split1[0], 10)][parseInt(split1[1], 10)];
+      if (card0 === card1) setMatched(true);
+
+      // Opening Dialog
+      open();
+
+      if (card0 !== card1) {
+        // Clearing out after 2 seconds
+        setTimeout(() => {
+          close();
+          setSelectedCards([]);
+        }, 2000);
+      } else {
+        // Closing only Dialog
+        setTimeout(() => {
+          close();
+        }, 2000);
+      }
+    }
+  }, [selectedCards]);
 
   const handleSelect = (value: string) => setSelectedEp(value);
 
-  const randomChar = (allChars) => {
-    const randomIndex = Math.floor(Math.random() * allChars.length);
-    const randomCh = allChars[randomIndex];
-    if (
-      randomCh?.name.toLowerCase().startsWith('rick') ||
-      randomCh?.name.toLowerCase().startsWith('morty')
-    )
-      return randomChar(allChars);
-    return randomCh;
+  const handleCardClick = (cardCoordinates: any) => {
+    if (selectedCards.length <= 1) {
+      if (!selectedCards.some((item) => item === cardCoordinates)) {
+        const tempArr = [...selectedCards];
+        tempArr.push(cardCoordinates);
+        setSelectedCards(tempArr);
+      }
+    }
   };
 
-  let threeChars = [];
-  if (epChars?.episode?.characters) {
-    threeChars = [
-      ...epChars?.episode?.characters.filter((item) => {
-        if (
-          item?.name.toLowerCase().startsWith('rick') ||
-          item?.name.toLowerCase().startsWith('morty')
-        )
-          return item;
-      }),
-      randomChar(epChars?.episode?.characters),
-    ];
-  }
+  if (loading) return 'Loading...';
 
-  const list = randomList(3);
-
-  console.log('list >>', list);
-  console.log('threeChars >>', threeChars);
+  if (error || error2) return `Error! ${error?.message}`;
 
   return (
     <main className={classes.main}>
@@ -96,25 +177,38 @@ export function Main() {
         onChange={handleSelect}
       />
 
-      <Grid>
-        <Grid.Col span={4}>1</Grid.Col>
-        <Grid.Col span={4}>2</Grid.Col>
-        <Grid.Col span={4}>3</Grid.Col>
-        <Grid.Col span={4}>1</Grid.Col>
-        <Grid.Col span={4}>2</Grid.Col>
-        <Grid.Col span={4}>3</Grid.Col>
-        <Grid.Col span={4}>1</Grid.Col>
-        <Grid.Col span={4}>2</Grid.Col>
-        <Grid.Col span={4}>3</Grid.Col>
-      </Grid>
+      {loading2 ? (
+        'Fetching Characters of the selected episode'
+      ) : (
+        <div className={classes.characters}>
+          {threeChars.length > 0 && (
+            <Grid>
+              {randomizedArr
+                .map((item1: any, index1: any) =>
+                  item1.map((item: any, index: any) => (
+                    <Grid.Col span={4} key={`${index1}-${index}`}>
+                      <MyCard
+                        id={`${index1}-${index}`}
+                        character={threeChars[item]}
+                        selectedCards={selectedCards}
+                        handleClick={handleCardClick}
+                      />
+                    </Grid.Col>
+                  )),
+                )
+                .flat()}
+            </Grid>
+          )}
+        </div>
+      )}
 
-      {/* <div className={classes.characters}>
-        {epChars?.episode?.characters &&
-          Array.isArray(epChars?.episode?.characters) &&
-          epChars?.episode?.characters.map((chars) => (
-            
-          ))}
-      </div> */}
+      <Dialog opened={opened} onClose={close} size='lg' radius='md'>
+        <Text size='sm' mb='xs' fw={500}>
+          {selectedCards.length > 1 && isMatched
+            ? 'You Matched!!'
+            : 'You Lose!'}
+        </Text>
+      </Dialog>
     </main>
   );
 }
