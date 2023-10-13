@@ -18,7 +18,6 @@ const MyCard = ({ id, character, selectedCards, handleClick }) => (
     shadow='md'
     onClick={() => handleClick(id)}
   >
-    {console.log('selectedCards.length >>', selectedCards.length)}
     {selectedCards && selectedCards.some((item: any) => item === id) ? (
       <>
         <Image radius='md' h='auto' fit='contain' src={character?.image} />
