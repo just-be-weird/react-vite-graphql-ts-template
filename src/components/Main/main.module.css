@@ -20,3 +20,10 @@
   min-width: 145px;
   padding: 1rem;
 }
+
+.characters {
+  margin-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+}

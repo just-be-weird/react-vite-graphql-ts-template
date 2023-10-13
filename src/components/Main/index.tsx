@@ -1,7 +1,19 @@
-import React from 'react';
-import { Card, Image } from '@mantine/core';
-import cx from 'clsx';
+import React, { useState } from 'react';
+import { Grid, Select } from '@mantine/core';
+import { useQuery } from '@apollo/client';
+import { GET_ALL_CHARACTERS, GET_ALL_EPISODES } from '@/graphql/query';
 import classes from './main.module.css';
+
+// const randomList = (len, arr = []) => {
+//   const randomVal = Math.floor(Math.random() * len);
+//   const temp = [...arr];
+//   console.log('temp >>', temp, temp.length);
+//   if (temp.length === len) return temp;
+//   if (temp.length < len) {
+//     if (temp.some((item) => item === randomVal)) return randomList(len, temp);
+//     temp.push(randomVal);
+//   }
+// };
 
 /**
  * Ref
@@ -13,17 +25,96 @@ import classes from './main.module.css';
  * @constructor
  */
 export function Main() {
+  const [selectedEp, setSelectedEp] = useState('');
+
+  const { loading, error, data } = useQuery(GET_ALL_EPISODES);
+  const selectDropdownData = [];
+
+  if (data) {
+    if (data?.episodes?.results) {
+      data?.episodes?.results.forEach((item: any) => {
+        selectDropdownData.push({
+          value: item?.id,
+          label: item?.name,
+        });
+      });
+    }
+  }
+
+  const {
+    loading: loading2,
+    error: error2,
+    data: epChars,
+  } = useQuery(GET_ALL_CHARACTERS, {
+    variables: {
+      episodeId: selectedEp,
+    },
+    skip: !selectedEp,
+  });
+
+  if (loading || loading2) return 'Loading...';
+
+  if (error || error2) return `Error! ${error.message}`;
+
+  const handleSelect = (value: string) => setSelectedEp(value);
+
+  const randomChar = (allChars) => {
+    const randomIndex = Math.floor(Math.random() * allChars.length);
+    const randomCh = allChars[randomIndex];
+    if (
+      randomCh?.name.toLowerCase().startsWith('rick') ||
+      randomCh?.name.toLowerCase().startsWith('morty')
+    )
+      return randomChar(allChars);
+    return randomCh;
+  };
+
+  let threeChars = [];
+  if (epChars?.episode?.characters) {
+    threeChars = [
+      ...epChars?.episode?.characters.filter((item) => {
+        if (
+          item?.name.toLowerCase().startsWith('rick') ||
+          item?.name.toLowerCase().startsWith('morty')
+        )
+          return item;
+      }),
+      randomChar(epChars?.episode?.characters),
+    ];
+  }
+
+  const list = randomList(3);
+
+  console.log('list >>', list);
+  console.log('threeChars >>', threeChars);
+
   return (
     <main className={classes.main}>
-      {/* your code */}
-      <Card className={cx(classes.box)} radius='md' shadow='md'>
-        <Image
-          radius='md'
-          h="auto"
-          fit="contain"
-          src='https://images.unsplash.com/photo-1688920556232-321bd176d0b4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2370&q=80'
-        />
-      </Card>
+      <Select
+        data={selectDropdownData}
+        value={selectedEp}
+        onChange={handleSelect}
+      />
+
+      <Grid>
+        <Grid.Col span={4}>1</Grid.Col>
+        <Grid.Col span={4}>2</Grid.Col>
+        <Grid.Col span={4}>3</Grid.Col>
+        <Grid.Col span={4}>1</Grid.Col>
+        <Grid.Col span={4}>2</Grid.Col>
+        <Grid.Col span={4}>3</Grid.Col>
+        <Grid.Col span={4}>1</Grid.Col>
+        <Grid.Col span={4}>2</Grid.Col>
+        <Grid.Col span={4}>3</Grid.Col>
+      </Grid>
+
+      {/* <div className={classes.characters}>
+        {epChars?.episode?.characters &&
+          Array.isArray(epChars?.episode?.characters) &&
+          epChars?.episode?.characters.map((chars) => (
+            
+          ))}
+      </div> */}
     </main>
   );
 }
