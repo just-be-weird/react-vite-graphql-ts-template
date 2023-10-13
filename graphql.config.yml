@@ -4,9 +4,11 @@ documents:
 extensions:
   endpoints:
     Default GraphQL Endpoint:
-      url: http://localhost:8888/
+#      url: https://swapi-graphql.netlify.app/.netlify/functions/index
+      url: https://rickandmortyapi.com/graphql
       headers:
         user-agent: JS GraphQL
-        Access-Control-Allow-Origin: http://localhost:8888/
+        Access-Control-Allow-Origin: https://rickandmortyapi.com/graphql
+#        Access-Control-Allow-Origin: https://swapi-graphql.netlify.app/.netlify/functions/index
         Access-Control-Allow-Credentials: true
       introspect: true

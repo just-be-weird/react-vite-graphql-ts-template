@@ -1,6 +1,6 @@
 import { ApolloClient, from, HttpLink, InMemoryCache } from '@apollo/client';
 import { errorMiddleware } from './errorMiddelware';
-import { __APP_BASE_REST_URL__ } from '@/constants';
+import { __APP_BASE_GRAPH_URL__, __APP_BASE_REST_URL__ } from '@/constants';
 
 const inMemoryCache = new InMemoryCache({
   addTypename: true,
@@ -16,15 +16,8 @@ const inMemoryCache = new InMemoryCache({
 });
 
 const httpLink = new HttpLink({
-  uri: __APP_BASE_REST_URL__, // Server URL (must be absolute)
+  uri: __APP_BASE_GRAPH_URL__ || __APP_BASE_REST_URL__, // Server URL (must be absolute)
   credentials: 'omit',
-  // headers: {
-  //   'Access-Control-Allow-Origin': '*',
-  //   Origin: 'https://studio.apollographql.com',
-  // },
-  // fetchOptions: {
-  //   mode: 'no-cors',
-  // },
 });
 
 export function createApolloClient() {
@@ -35,7 +28,7 @@ export function createApolloClient() {
      *  1. apollographql-client-name   2. apollographql-client-version
      *  This will help in the operation tracing, reports and analytics
      */
-    name: 'JBWPlatform',
+    name: 'Platform',
     version: '1.0.0',
     link: from([errorMiddleware, httpLink]),
     cache: inMemoryCache,
