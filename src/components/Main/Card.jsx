@@ -3,13 +3,13 @@ import { Card, Image, Text } from '@mantine/core';
 import cx from 'clsx';
 import classes from './main.module.css';
 
-const Card = () => {
+const MyCard = ({ char }) => {
   return (
-    <Card key={chars?.id} className={cx(classes.box)} radius='md' shadow='md'>
-      <Image radius='md' h='auto' fit='contain' src={chars?.image} />
-      <Text fw={500}>{chars?.name}</Text>
+    <Card key={char?.id} className={cx(classes.box)} radius='md' shadow='md'>
+      <Image radius='md' h='auto' fit='contain' src={char?.image} />
+      <Text fw={500}>{char?.name}</Text>
     </Card>
   );
 };
 
-export default Card;
+export default MyCard;

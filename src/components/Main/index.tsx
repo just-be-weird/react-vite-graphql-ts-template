@@ -2,18 +2,20 @@ import React, { useState } from 'react';
 import { Grid, Select } from '@mantine/core';
 import { useQuery } from '@apollo/client';
 import { GET_ALL_CHARACTERS, GET_ALL_EPISODES } from '@/graphql/query';
+import MyCard from './Card';
 import classes from './main.module.css';
 
-// const randomList = (len, arr = []) => {
-//   const randomVal = Math.floor(Math.random() * len);
-//   const temp = [...arr];
-//   console.log('temp >>', temp, temp.length);
-//   if (temp.length === len) return temp;
-//   if (temp.length < len) {
-//     if (temp.some((item) => item === randomVal)) return randomList(len, temp);
-//     temp.push(randomVal);
-//   }
-// };
+const randomList = (len, arr = []) => {
+  const randomVal = Math.floor(Math.random() * len);
+  const temp = [...arr];
+  if (temp.length === len) return temp;
+  if (temp.length < len) {
+    if (!(temp.length > 0 && temp.some((item) => item === randomVal))) {
+      temp.push(randomVal);
+    }
+    return randomList(len, temp);
+  }
+};
 
 /**
  * Ref
@@ -83,7 +85,7 @@ export function Main() {
     ];
   }
 
-  const list = randomList(3);
+  const list = [randomList(3), randomList(3), randomList(3)];
 
   console.log('list >>', list);
   console.log('threeChars >>', threeChars);
@@ -96,17 +98,19 @@ export function Main() {
         onChange={handleSelect}
       />
 
-      <Grid>
-        <Grid.Col span={4}>1</Grid.Col>
-        <Grid.Col span={4}>2</Grid.Col>
-        <Grid.Col span={4}>3</Grid.Col>
-        <Grid.Col span={4}>1</Grid.Col>
-        <Grid.Col span={4}>2</Grid.Col>
-        <Grid.Col span={4}>3</Grid.Col>
-        <Grid.Col span={4}>1</Grid.Col>
-        <Grid.Col span={4}>2</Grid.Col>
-        <Grid.Col span={4}>3</Grid.Col>
-      </Grid>
+      {threeChars.length > 0 && (
+        <Grid>
+          {list
+            .map((item) =>
+              item.map((item) => (
+                <Grid.Col span={4}>
+                  <MyCard char={threeChars[item]} />
+                </Grid.Col>
+              )),
+            )
+            .flat()}
+        </Grid>
+      )}
 
       {/* <div className={classes.characters}>
         {epChars?.episode?.characters &&
