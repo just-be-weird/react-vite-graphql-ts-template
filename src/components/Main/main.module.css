@@ -2,11 +2,21 @@
   border-radius: var(--mantine-radius-md);
   margin: 0 2rem 1rem;
   padding: 2rem;
-  background: linear-gradient(
-    50deg,
-    var(--mantine-color-gray-1) 0%,
-    var(--mantine-color-gray-0) 100%
-  );
+  @mixin light {
+    background: linear-gradient(
+      140deg,
+      var(--mantine-color-blue-1) 0%,
+      var(--mantine-color-orange-0) 100%
+    );
+  }
+
+  @mixin dark {
+    background: linear-gradient(
+      140deg,
+      var(--mantine-color-blue-9) 0%,
+      var(--mantine-color-orange-8) 100%
+    );
+  }
   height: calc(100% - 6rem);
 }
 .box {
