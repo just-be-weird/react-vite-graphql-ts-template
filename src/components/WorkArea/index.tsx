@@ -1,20 +1,31 @@
 import React from 'react';
-import { Card, Image, Select } from '@mantine/core';
-import cx from 'clsx';
-import classes from '@/components/Main/main.module.css';
-import { GET_ALL_EPISODES } from '@/graphql/query';
+// import { Card } from '@/components/Shared';
+// import { Grid } from '@mantine/core';
+// import cx from 'clsx';
+// import classes from './workarea.module.css';
+// import { GET_ALL_EPISODES } from '@/api/graphql';
+// import { GET_ALL_EPISODES } from '@/api/rest';
 
+const dummyRow = {
+  __typename: 'Character',
+  id: '1',
+  image: 'https://rickandmortyapi.com/api/character/avatar/1.jpeg',
+  name: 'Rick Sanchez',
+};
 /**
- * @desc Component API Reference
- * Select: https://mantine.dev/core/select/#data-formats
- * Card: https://mantine.dev/core/card/#usage
- * Image: https://mantine.dev/core/image/
- * Dialog: https://mantine.dev/core/dialog/
+ * GraphQL API
+ * @see https://studio.apollographql.com/public/rick-and-morty-a3b90u/variant/current/explorer
+ *
+ * Rest API
+ * @see https://rickandmortyapi.com/documentation/#rest
+ *
+ * UI component API Reference
+ * @see https://mantine.dev
  */
-
 /**
- * Renders WorkArea component
+ * @desc Renders WorkArea component
  * @constructor
+ *
  */
 export function WorkArea() {
   // const { data, loading } = useQuery(GET_ALL_EPISODES);
@@ -24,20 +35,12 @@ export function WorkArea() {
       {/* your code */}
       {/*<Select*/}
       {/*  disabled={loading}*/}
-      {/*  data={data?.episodes?.results?.map((ep) => ({*/}
-      {/*    value: ep.id,*/}
-      {/*    label: ep.name,*/}
-      {/*  }))}*/}
+      {/*  data={[]}*/}
       {/*  onChange={}*/}
       {/*/>*/}
-      <Card className={cx(classes.box)} radius='md' shadow='md'>
-        <Image
-          radius='md'
-          h='auto'
-          fit='contain'
-          src='https://images.unsplash.com/photo-1688920556232-321bd176d0b4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2370&q=80'
-        />
-      </Card>
+      {/*<Grid>*/}
+      {/*  <Card loading={false} row={dummyRow} onClick={() => {}} selected={true} />*/}
+      {/*</Grid>*/}
     </div>
   );
 }

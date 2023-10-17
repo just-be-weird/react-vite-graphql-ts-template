@@ -6,15 +6,20 @@ import {
   Highlight,
   List,
   ThemeIcon,
+  Title,
 } from '@mantine/core';
 import { IconCode, IconExclamationMark } from '@tabler/icons-react';
 import { useDisclosure } from '@mantine/hooks';
+import { ThemeProvider } from '@/docs/icons';
+import React from 'react';
 
 export function Problem() {
   const [opened, { open, close }] = useDisclosure(false);
   return (
     <>
       <Drawer size='lg' opened={opened} onClose={close}>
+        <Title order={3}>Problem</Title>
+
         <List spacing='xs' size='sm' center>
           <List.Item>
             Use{' '}
@@ -75,6 +80,10 @@ export function Problem() {
             vars and the response.
           </List.Item>
         </List>
+        <Title mt='lg' order={4}>
+          Preview
+        </Title>
+        <ThemeProvider name='P1+G' />
       </Drawer>
 
       <Button onClick={open}>Problem description</Button>

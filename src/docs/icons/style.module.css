@@ -1,0 +1,55 @@
+.box {
+  background: linear-gradient(
+    140deg,
+    var(--mantine-color-blue-1) 0%,
+    var(--mantine-color-orange-0) 100%
+  );
+  height: 22vh;
+  width: 10vw;
+  min-width: 145px;
+  padding: 1rem;
+
+  .img,
+  .title {
+    visibility: hidden;
+    opacity: 0;
+  }
+
+  &.answered {
+    .img,
+    .title {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+
+  &.selected {
+    .img,
+    .title {
+      -webkit-animation: fadeIn 0.5s linear forwards;
+      animation: fadeIn 0.5s linear forwards;
+    }
+  }
+}
+
+@-webkit-keyframes fadeIn {
+  0% {
+    opacity: 0;
+    visibility: hidden;
+  }
+  100% {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    visibility: hidden;
+  }
+  100% {
+    opacity: 1;
+    visibility: visible;
+  }
+}

@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import '@mantine/core/styles.css';
 import App from './App';
 import { ApolloProvider } from '@apollo/client';
-import { createApolloClient } from './graphql/init';
+import { createApolloClient } from '@/api/graphql/init';
 import './theme/index.css';
 import '@mantine/core/styles.css';
 import { cssVarResolver, theme } from '@/theme';

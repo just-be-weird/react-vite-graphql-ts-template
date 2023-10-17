@@ -1,6 +1,6 @@
-schema: src/graphql/generated/graphql.schema.graphql
+schema: src/api/graphql/generated/graphql.schema.graphql
 documents:
-  - src/graphql/generated/*.ts
+  - src/api/graphql/generated/*.ts
 extensions:
   endpoints:
     Default GraphQL Endpoint:
