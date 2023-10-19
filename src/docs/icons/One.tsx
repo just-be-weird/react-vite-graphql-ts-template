@@ -1,10 +1,31 @@
 import { gql, useQuery } from '@apollo/client';
 import React, { ReactElement, useMemo, useState } from 'react';
-import { Alert, Grid, Loader, Select } from '@mantine/core';
+import { Alert, Dialog, Grid, Loader, Select, Text } from '@mantine/core';
 import { IconClick } from '@tabler/icons-react';
 import { Card } from '@/components/Shared';
+import { useDisclosure } from '@mantine/hooks';
+
+const randomize = (list: Character[]) => {
+  const shuffledArray = [...list];
+  // Fisher Y Algo for shuffling 1D array
+  for (let i = shuffledArray.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffledArray[i], shuffledArray[j]] = [shuffledArray[j], shuffledArray[i]];
+  }
+
+  return shuffledArray;
+};
+
+const isRickNMorty = (char: SelectedCharacter) => {
+  const name = (char?.name ?? '').toLowerCase();
+  return name.includes('morty') || name.includes('rick') ? char : null;
+};
+
+type SelectedCharacter = Character & { foundPair?: boolean };
 
 export const RickNMortyGraph = (): ReactElement => {
+  const [opened, { open, close }] = useDisclosure(false);
+  const [count, setCount] = useState(0);
   const [episode, setEpisode] = useState('');
   const {
     data,
@@ -23,100 +44,68 @@ export const RickNMortyGraph = (): ReactElement => {
       skip: !episode,
     },
   );
-  let rickAndMorty: Character[] = [];
+  const [characters, setCharacters] = useState<SelectedCharacter[]>([]);
 
-  const [pair, setPair] = useState<
-    Record<1 | 2, Character | null> & { found: string[] }
-  >({
-    1: null,
-    2: null,
-    found: [],
-  });
   const handleSelect = (value: string) => {
     setEpisode(value);
-  };
-
-  const isRickNMorty = (char: Character) =>
-    char.name.toLowerCase().includes('morty') ||
-    char.name.toLowerCase().includes('rick');
-  const getCharsForGrid = (chars: Character[]): Character[] => {
-    if (!rickAndMorty.length) {
-      let i = 0;
-      while (i < chars.length) {
-        if (isRickNMorty(chars[i])) {
-          rickAndMorty.push(chars[i]);
-        }
-
-        if (rickAndMorty.length === 2) {
-          break;
-        }
-        i = i + 1;
-      }
-    }
-
-    const lastChar = chars.find((char) => !isRickNMorty(char)) as Character;
-
-    return [...rickAndMorty, lastChar];
-  };
-  const randomize = (list: Character[]) => {
-    const shuffledArray = [...list];
-    for (let i = shuffledArray.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [shuffledArray[i], shuffledArray[j]] = [
-        shuffledArray[j],
-        shuffledArray[i],
-      ];
-    }
-    return shuffledArray;
+    setCharacters([]);
+    setCount(0);
+    close();
   };
 
   const handleCardClick = (cc: Character, i: number) => {
-    if (!pair['1']) {
-      setPair((pp) => ({
-        ...pp,
-        '1': { ...cc, id: cc.id + i },
-        found: [...pp.found, cc.id + i],
-      }));
+    let updates = [...characters].map((c) => ({
+      ...c,
+      foundPair: characters.length > 1 && c.name === cc.name,
+    }));
+    const lastCharacter = updates[updates.length - 1];
+    const isCurrentCharRnM = !!isRickNMorty(cc);
+    const isLastCharRnM = !!isRickNMorty(lastCharacter);
+    updates = [
+      ...updates,
+      { ...cc, id: cc.id + i, foundPair: lastCharacter?.name === cc.name },
+    ];
+
+    const clearLastSelection =
+      updates.length >= 1 &&
+      !(
+        isCurrentCharRnM ||
+        (isLastCharRnM && updates[updates.length - 1].foundPair)
+      );
+
+    // select current character to make it visible
+    setCharacters(updates);
+    // we found a rick or morty pair then show you won!
+    if (updates.filter((c) => isRickNMorty(c)).length === 4) {
+      open(); // show message
+      setTimeout(() => {
+        close(); // close message after 1sec
+        setCharacters([]); // reset cards
+        setCount(0);
+      }, 2000);
     } else {
-      setPair((pp) => ({
-        ...pp,
-        '2': { ...cc, id: cc.id + i },
-        found: [...pp.found, cc.id + i],
-      }));
+      setCount((pc) => pc + 1);
     }
 
-    if (pair['1'] && pair['2']) {
+    if (clearLastSelection) {
+      // else pop out prev selected character after 1 sec
       setTimeout(() => {
-        const sameChars = pair['1']?.name === pair['2']?.name;
-        const rickNMorty =
-          pair['1']?.name === 'Morty Smith' &&
-          pair['2']?.name === 'Rick Sanchez';
-
-        if ((sameChars && !rickNMorty) || !(!sameChars && rickNMorty)) {
-          setPair((pp) => ({
-            1: null,
-            2: null,
-            found: [], //...pp.found
-          }));
-        } else {
-          setPair((pp) => ({
-            1: null,
-            2: null,
-            found: [...pp.found],
-          }));
+        if (!lastCharacter?.foundPair) {
+          updates.pop(); // removes last character
         }
+        setCharacters(updates);
       }, 1000);
     }
   };
 
-  const gridData = useMemo(
-    () =>
-      Array(3)
-        .fill(getCharsForGrid(charsData?.episode?.characters ?? []).slice())
-        .map((i) => randomize(i)),
-    [charsData],
-  );
-  const gridNodes = gridData.flat().filter(Boolean);
+  const gridData = useMemo(() => {
+    const arr = Array(2)
+      .fill(charsData?.episode?.characters?.slice(0, 5))
+      .flat(); // 10 chars
+    arr.pop(); // 10 -1 => 9 chars
+    return randomize(arr);
+  }, [charsData]);
+  const gridNodes = gridData.flat().filter(Boolean); // 3 * 3 grid
 
   return (
     <>
@@ -141,23 +130,35 @@ export const RickNMortyGraph = (): ReactElement => {
                 loading={loadingChars}
                 onClick={() => handleCardClick(row, i)}
                 row={row}
-                selected={pair.found.includes(row.id + i)}
+                selected={characters.map((c) => c.id).includes(row.id + i)}
               />
             );
           })}
         </Grid>
       ) : loadingChars ? (
-        <Loader color='blue' />
+        <Loader color='yellow' />
       ) : (
         <Alert
           variant='light'
-          color='red'
+          color='yellow'
           title='No charaters to show'
           icon={<IconClick />}
         >
           Please select a episode from dropdown to generate the grid.
         </Alert>
       )}
+      <Dialog
+        opened={opened}
+        withCloseButton
+        onClose={close}
+        radius='md'
+        bg='green'
+      >
+        <Text size='sm' fw={500}>
+          You found rick and morty in{' '}
+          {count === 1 ? '1 attempt' : `${count} attempts`}!
+        </Text>
+      </Dialog>
     </>
   );
 };

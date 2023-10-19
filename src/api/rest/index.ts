@@ -10,3 +10,10 @@ export const GET_ALL_EPISODES = `${API_BASE}/episode`;
  * @see https://rickandmortyapi.com/documentation/#get-a-single-character
  */
 export const getCharacter = (id: number) => `${API_BASE}/character/${id}`;
+
+export const dummyCharacter = {
+  __typename: 'Character',
+  id: '1',
+  image: 'https://rickandmortyapi.com/api/character/avatar/1.jpeg',
+  name: 'Rick Sanchez',
+};

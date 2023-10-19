@@ -8,31 +8,22 @@ tools check the links.
 1. Version manager for the node - nvm and recommended version 🔗 [view instruction](https://github.com/nvm-sh/nvm)
 2. Yarn, install by running `npm install --global yarn`
 3. Clone the repo by running `git clone https://github.com/just-be-weird/react-vite-graphql-ts-template.git nivoda-int`
-4. Checkout `git checkout sridhar`
+4. Checkout `git checkout `
 5. Run the project by `yarn dev`
 
 ## Challenge
 
-1. Use [Rick and morty API](https://studio.apollographql.com/public/rick-and-morty-a3b90u/variant/current/home) to get a list of episodes with `name` and characters with `picture, name`.
-2. Provide a dropdown on the user interface for selecting the fetched episode from the list.
-3. For a chosen episode, create a 3 X 3 grid with three random characters and Rick and Morty from the character list.
-4. Three characters will be placed in pairs as follows
+1. You've been provided data having a list of episodes with `name` and characters with `picture, name`.
+2. Provide a dropdown for selecting the episode from the list.
+3. For a selected episode, create a 3 X 3 grid by using first 5 characters (5 * 2 - 1 = 9).
+4. We need to make sure that all 9 items in grid are randomized.
+5. These items are clickable and if a item has previously been clicked, and they match you found Rick and Morty then keep them visible.
+6. If a card has previously been clicked, and they match then keep them visible.
+7. Hide them after one second if they don't match.
 
-```js
-const threePairedChars = 3 * 2; // 6 characters
-const rickAndMortyPair = 1 + 1; // 1 rick + 1 morty => 2 characters
-const oneRandomChar = 1;
-
-// 3*3 grid using chars => 6 + 2 + 1 (any random char from 8) ==> 9
-const threeByThreeGrid = threePairedChars + rickAndMortyPair + oneRandomChar;
-```
-
-1. You can click on any of these individual cards.
-2. If a card has previously been clicked, and they match then keep them visible.
-3. Hide them after one second if they don't match.
-4. If all the pairs are matched, or you found Rick and Morty then show a dialog "You won!"
-
-**Bonus**: Use TS to type e.g. function arg, return type, data, local vars and the response.
+**Bonus**: 
+* Test when grid items are rendered when an episode is selected.
+* Use TS to type e.g. function arg, return type, data, local vars and the response.
 
 ## Features
 
