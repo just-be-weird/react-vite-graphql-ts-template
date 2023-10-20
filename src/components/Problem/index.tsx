@@ -21,7 +21,7 @@ const meta = {
   problem: true,
   preview: true,
   bonus: true,
-  reference: true,
+  reference: false,
 };
 export function Problem() {
   const [opened, { open, close }] = useDisclosure(false);
@@ -39,31 +39,24 @@ export function Problem() {
             <Title order={3}>Problem</Title>
             <List spacing='sm' size='md' center>
               <List.Item>
-                You've been provided data having{' '}
+                You've been provided data of directory tree having{' '}
                 {renderHighlight(
-                  'a list of episodes with name and characters with picture and name.',
-                  'red',
-                  ['name', 'picture'],
+                  'a list of directories and associated files.',
+                  'blue',
+                  ['directories', 'files'],
                 )}
               </List.Item>
               <List.Item>
-                Provide a dropdown for selecting the episode from the list.
+                Using this data{' '}
+                {renderHighlight('render a VS-code like file tree', 'blue')}.
               </List.Item>
               <List.Item>
-                For a selected episode, create a{' '}
-                {renderHighlight('3 X 3', 'red')} grid by using first 5
-                characters {renderHighlight('(5 * 2 - 1 = 9)', 'orange')}.
-              </List.Item>
-              <List.Item>
-                We need to make sure that all 9 items in grid are randomized.
-              </List.Item>
-              <List.Item>
-                These items are clickable and if a item has previously been
-                clicked, and they match you found Rick and Morty then keep them
-                visible.
-              </List.Item>
-              <List.Item>
-                Hide them after one second if they don't match.
+                For each directory when we hover provide an{' '}
+                {renderHighlight(
+                  'option to add a new directory or file',
+                  'blue',
+                )}
+                .
               </List.Item>
             </List>
           </Blockquote>
@@ -75,7 +68,7 @@ export function Problem() {
             icon={<IconPresentationAnalytics />}
           >
             <Title order={4}>Preview</Title>
-            <ThemeProvider name='P1+G' />
+            <ThemeProvider name='P2' />
           </Blockquote>
         )}
         {meta.bonus && (
@@ -83,9 +76,10 @@ export function Problem() {
             <Title mb='sm' order={4}>
               Bonus
             </Title>
-            <List size='md' center>
+            <List spacing='sm' size='md' center>
               <List.Item>
-                Test when grid items are rendered when an episode is selected.
+                Test when a directory is expanded shows correct content and
+                hides it when clicked again.
               </List.Item>
               <List.Item>
                 Use TS to type e.g. function arg, return type, data, local vars

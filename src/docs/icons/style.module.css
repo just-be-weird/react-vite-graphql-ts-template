@@ -53,3 +53,27 @@
     visibility: visible;
   }
 }
+.action {
+  display: none;
+}
+.fileTreeContainer {
+  width: 500px;
+  margin-top: var(--mantine-spacing-md);
+  background: var(--mantine-color-white);
+
+  @mixin dark {
+    background: var(--mantine-color-black);
+  }
+}
+.mainNavLink {
+  &:hover .action {
+    display: inline-flex;
+    margin-left: var(--mantine-spacing-lg);
+    gap: var(--mantine-spacing-md);
+  }
+}
+.input {
+  margin: var(--mantine-spacing-sm) 0;
+  margin-left: var(--mantine-spacing-md);
+  width: rem(300px);
+}

@@ -1,31 +1,32 @@
 import React from 'react';
-import { useDataStore } from '@/api/hook';
+import {
+  useFileDataStore,
+  DirectoryNode,
+  directoryTree,
+  FileNode,
+  FileTreeNode,
+} from '@/api/hook';
 // import cx from 'clsx';
 import classes from './workArea.module.css';
-// import { GET_ALL_EPISODES } from '@/api/graphql';
-// import { GET_ALL_EPISODES } from '@/api/rest';
-
+// import {
+//   IconFileText,
+//   IconFolder,
+//   IconMinus,
+//   IconPlus
+// } from '@tabler/icons-react';
+// import { NavLink } from '@mantine/core';
 /**
- * GraphQL API
- * @see https://studio.apollographql.com/public/rick-and-morty-a3b90u/variant/current/explorer
+ * Render a vs-code like file tree using directoryTree data.
  *
- * Rest API
- * @see https://rickandmortyapi.com/documentation/#rest
- *
- * UI component API Reference
- * @see https://mantine.dev
+ * Icons:
+ * IconFileText, IconFolder, IconMinus, IconPlus
  */
 /**
  * @desc Renders WorkArea component
  * @constructor
- *
  */
 export function WorkArea() {
-  // const { data, loading } = useDataStore();
+  const { data } = useFileDataStore();
 
-  return (
-    <div className={classes.workArea}>
-      {/* your code */}
-    </div>
-  );
+  return <div className={classes.workArea}>{/* your code */}</div>;
 }
