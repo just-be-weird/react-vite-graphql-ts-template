@@ -1,5 +1,6 @@
-import React, { SyntheticEvent, useState } from 'react';
+import React, { useState } from 'react';
 import classes from './style.module.css';
+import { omit } from 'lodash';
 import cx from 'clsx';
 
 import {
@@ -10,91 +11,78 @@ import {
 } from '@tabler/icons-react';
 import { NavLink, ScrollArea, TextInput } from '@mantine/core';
 import { useFileDataStore } from '@/api/hook';
-
-type NodeType = 'directory' | 'file';
-
-interface FileNode {
-  path: string;
-  name: string;
-  size: string;
-  type: 'file';
-  extension: string;
-}
-
-interface DirectoryNode {
-  path: string;
-  name: string;
-  size: string;
-  type: 'directory';
-  children: FileNode[] | DirectoryNode[];
-}
-
-type FileTreeNode = Array<DirectoryNode>;
-
-type CreateNode = {
-  node: FileNode | DirectoryNode | null;
-  name: string;
-  type: NodeType;
-};
+import {
+  CreateNode,
+  DirectoryChildren,
+  DirectoryNode,
+  FileNode,
+  FileTreeNode,
+  Nodes,
+  NodeType,
+  TargetNode,
+} from '@/types/tree';
 
 type Props = {
-  active: string;
-  fileTree: Array<FileNode | DirectoryNode>;
-  insertNode: (node: CreateNode) => void;
-  setActive: (s: string) => void;
+  targetNode: TargetNode;
+  fileTree: DirectoryChildren;
+  insertNode: (name: string) => void;
+  level: number;
+  nodeIndex?: number;
+  setTargetNode: (n: TargetNode) => void;
 };
 
-const Action = ({
-  node,
-  setNode,
-}: {
-  node: DirectoryNode | FileNode;
-  setNode: (n: DirectoryNode | FileNode, type: NodeType) => void;
-}) => {
-  const handleOnClick = (e: SyntheticEvent) => {
+const Action = ({ setNode }: { setNode: (type: NodeType) => void }) => {
+  const handleOnClick: React.MouseEventHandler<HTMLSpanElement> = (e) => {
     e.preventDefault();
     e.stopPropagation();
-    // @ts-ignore
-    setNode(node, e.target.dataset.action);
+    setNode((e.target as HTMLSpanElement).dataset.action as NodeType);
   };
   return (
     <div className={cx(classes.action, classes.action)}>
       <span onClick={handleOnClick} data-action='directory'>
-        <IconFolder size='.75rem' stroke={1.5} /> +
+        <IconFolder data-action='directory' size='.75rem' stroke={1.5} /> +
       </span>
       <span onClick={handleOnClick} data-action='file'>
-        <IconFileText size='.75rem' stroke={1.5} /> +
+        <IconFileText data-action='file' size='.75rem' stroke={1.5} /> +
       </span>
     </div>
   );
 };
 
 function FileTree(props: Props) {
-  const { active, fileTree, insertNode, setActive } = props;
+  const { targetNode, fileTree, insertNode, level, setTargetNode } = props;
   const [createNode, setCreateNode] = useState<CreateNode>({
-    node: null,
-    name: '',
-    type: 'file',
+    nodes: {},
   });
-  const [expanded, setExpanded] = useState<string[]>([]);
+  const [nodeName, setNodeName] = useState('');
+  const removeNode = (
+    nodes: CreateNode['nodes'],
+    id: string,
+  ): CreateNode['nodes'] => omit(nodes, id);
 
   return (
     <ScrollArea.Autosize mah={600} mx='auto'>
-      {fileTree.map((node) => {
-        const handleNavClick = () => {
-          let newExpanded = [...expanded];
-          if (newExpanded.includes(node.path)) {
-            setExpanded(newExpanded.filter((i) => i !== node.path));
-            setActive('');
+      {fileTree.map((node, nodeIndex) => {
+        const handleNavClick = (node: Nodes) => {
+          let newNodes = { ...createNode.nodes };
+          if (newNodes[node.path]) {
+            setCreateNode({ nodes: removeNode(newNodes, node.path) });
           } else {
-            setExpanded([...newExpanded, node.path]);
-            setActive(node.path);
+            setCreateNode({
+              nodes: {
+                ...newNodes,
+                [node.path]: node,
+              },
+            });
           }
         };
 
         if (node.type === 'directory') {
-          const isActive = node.path === active;
-          const isExpanded = expanded.includes(node.path);
+          const isActive =
+            targetNode.pi === level && targetNode.ci === node.children.length;
+          const isExpanded = !!createNode.nodes[node.path];
+          const isTargetNode =
+            targetNode.pi === level && targetNode.ci === node.children.length;
 
           return (
             <NavLink
@@ -107,18 +95,16 @@ function FileTree(props: Props) {
                 <>
                   {node.name}
                   <Action
-                    node={node}
-                    setNode={(node, type) => {
-                      setExpanded((pe) =>
-                        !pe.includes(node.path) ? [...pe, node.path] : pe,
-                      );
-                      setTimeout(() => {
-                        setCreateNode((prev) => ({
-                          ...prev,
-                          node,
-                          type,
-                        }));
-                      }, 0);
+                    setNode={(type) => {
+                      setTargetNode({
+                        pi: level,
+                        ci: (fileTree[nodeIndex] as DirectoryNode).children
+                          .length,
+                        type,
+                      });
+                      setCreateNode({
+                        nodes: { ...createNode.nodes, [node.path]: node },
+                      });
                     }}
                   />
                 </>
@@ -133,26 +119,28 @@ function FileTree(props: Props) {
               }
               opened={isExpanded}
               childrenOffset={28}
-              onClick={handleNavClick}
+              onClick={() => handleNavClick(node)}
             >
-              {createNode.node && (
+              {isTargetNode && (
                 <TextInput
                   className={classes.input}
                   autoFocus
-                  value={createNode.name}
-                  onBlur={() =>
-                    setCreateNode({ node: null, name: '', type: 'file' })
-                  }
-                  onChange={(event) =>
-                    setCreateNode((prev) => ({
-                      ...prev,
-                      name: event.target.value,
-                    }))
-                  }
+                  value={nodeName}
+                  onBlur={() => {
+                    setTargetNode({
+                      pi: null,
+                      ci: 0,
+                      type: '',
+                    });
+                    setNodeName('');
+                    setCreateNode({
+                      nodes: removeNode(createNode.nodes, node.path),
+                    });
+                  }}
+                  onChange={(event) => setNodeName(event.target.value)}
                   onKeyDown={(e) => {
-                    console.log(e.code === 'Enter');
-                    if (e.code === 'Enter' && createNode.name) {
-                      insertNode(createNode);
+                    if (e.code === 'Enter' && nodeName) {
+                      insertNode(nodeName);
                     }
                   }}
                 />
@@ -160,8 +148,9 @@ function FileTree(props: Props) {
               <FileTree
                 fileTree={node.children}
                 insertNode={insertNode}
-                active={active}
-                setActive={setActive}
+                level={level + 1}
+                targetNode={targetNode}
+                setTargetNode={setTargetNode}
               />
             </NavLink>
           );
@@ -172,41 +161,9 @@ function FileTree(props: Props) {
                 root: classes.actionHover,
               }}
               key={node.path}
-              label={
-                <>
-                  {node.name}
-                  <Action
-                    node={node}
-                    setNode={(node, type) =>
-                      setCreateNode((prev) => ({
-                        ...prev,
-                        node,
-                        type,
-                      }))
-                    }
-                  />
-                </>
-              }
+              label={node.name}
               leftSection={<IconFileText size='1rem' stroke={1.5} />}
-              onClick={handleNavClick}
-            >
-              {createNode.node && (
-                <TextInput
-                  autoFocus
-                  className={classes.input}
-                  value={createNode.name}
-                  onBlur={() =>
-                    setCreateNode({ node: null, name: '', type: 'file' })
-                  }
-                  onChange={(event) =>
-                    setCreateNode((prev) => ({
-                      ...prev,
-                      name: event.target.value,
-                    }))
-                  }
-                />
-              )}
-            </NavLink>
+            />
           );
         } else {
           return null;
@@ -219,62 +176,43 @@ function FileTree(props: Props) {
 export function RenderTree() {
   const directoryTree = useFileDataStore();
   const [dt, setDT] = useState<FileTreeNode>(directoryTree.data);
-  const [active, setActive] = useState('');
-  const handleSetActive = (a: string) => {
-    setActive((p) => (a === p ? '' : a));
+  const [targetNode, setSetTargetNode] = useState<TargetNode>({
+    pi: null,
+    ci: dt[0].children.length,
+    type: '',
+  });
+  const handleSetTargetNode = (tn: TargetNode) => {
+    setSetTargetNode(tn);
   };
-  const handleInsertNode = (node: CreateNode) => {
-    const activeNode = node.node;
-    if (activeNode) {
+  const handleInsertNode = (name: string) => {
+    if (name && targetNode.pi !== null && targetNode.type) {
       let newNode: FileNode | DirectoryNode;
-      if (node.type === 'directory') {
-        newNode = {
-          children: [],
-          name: node.name,
-          path: activeNode.path + '/' + node.name,
-          size: Math.random() * 400,
-          type: node.type,
-        };
-      } else {
-        newNode = {
-          extension: node.name.split('.')[1] || '.txt',
-          name: node.name,
-          path: activeNode.path + '/' + node.name,
-          size: Math.random() * 400,
-          type: node.type,
-        };
-      }
-      let updatedDt: FileTreeNode;
-      console.log(activeNode);
-      if (activeNode.name === 'src') {
-        updatedDt = [{ ...dt[0], children: [...dt[0].children, newNode] }];
+      let updatedDt: FileTreeNode = [...dt];
+      const parentNode =  updatedDt[targetNode.pi];
+      console.log(name, targetNode, parentNode, dt);
 
-        setDT(updatedDt);
-      } else {
-        const dtChildren = dt[0].children; // src.children
-        function insertNode(
-          children: DirectoryChildren | FileNode | DirectoryNode,
-          item: FileNode | DirectoryNode,
-        ) {
-          /* DFS call to search ID */
-          if (Array.isArray(children)) {
-            return dtChildren.map((dfNode) => insertNode(dfNode, item));
-          }
-          // if (children.id === id) {
-          //   /* insert at beginning */
-          //   children.items.unshift({
-          //     id: new Date().toTimeString(),
-          //     name: item,
-          //     isFolder,
-          //     items: [],
-          //   });
-          //
-          //   return children;
-          // }
-
-          // updatedDt = { ...tree, items: updatedDt };
+      if (parentNode) {
+        if (targetNode.type === 'directory') {
+          newNode = {
+            children: [],
+            name: name,
+            path: parentNode.path + '/' + name,
+            size: 0,
+            type: targetNode.type,
+          };
+        } else {
+          newNode = {
+            extension: name.split('.')[1] || 'untitled.txt',
+            name: name,
+            path: parentNode.path + '/' + name,
+            size: Math.random() * 400,
+            type: targetNode.type,
+          };
         }
-        console.log(insertNode(dtChildren, newNode));
+        updatedDt[targetNode.pi][targetNode.ci] = newNode;
+        setDT([...updatedDt]);
+
+        console.log(parentNode, newNode, updatedDt, dt);
       }
     }
   };
@@ -283,9 +221,10 @@ export function RenderTree() {
       <div className={classes.fileTreeContainer}>
         <FileTree
           fileTree={dt}
-          active={active}
+          level={0}
+          targetNode={targetNode}
           insertNode={handleInsertNode}
-          setActive={handleSetActive}
+          setTargetNode={handleSetTargetNode}
         />
       </div>
     </main>

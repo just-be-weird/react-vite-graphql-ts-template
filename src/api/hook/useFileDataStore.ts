@@ -1,3 +1,5 @@
+import { FileTreeNode } from '@/types/tree';
+
 export const directoryTree: FileTreeNode = [
   {
     path: 'src',
@@ -82,12 +84,12 @@ export const directoryTree: FileTreeNode = [
     ],
   },
 ];
-
-export interface FileNode {}
-
-export interface DirectoryNode {}
-
-export type FileTreeNode = Array<DirectoryNode>;
+//
+// export interface FileNode {}
+//
+// export interface DirectoryNode {}
+//
+// export type FileTreeNode = Array<DirectoryNode>;
 
 export const useFileDataStore = () => {
   return { data: directoryTree };
