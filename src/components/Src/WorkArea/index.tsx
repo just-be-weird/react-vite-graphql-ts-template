@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDataStore } from '@/api/hook';
 // import cx from 'clsx';
-import classes from './workArea.module.css';
+import classes from './workarea.module.css';
 // import { GET_ALL_EPISODES } from '@/api/graphql';
 // import { GET_ALL_EPISODES } from '@/api/rest';
 
@@ -23,9 +23,5 @@ import classes from './workArea.module.css';
 export function WorkArea() {
   // const { data, loading } = useDataStore();
 
-  return (
-    <div className={classes.workArea}>
-      {/* your code */}
-    </div>
-  );
+  return <div className={classes.workArea}>{/* your code */}</div>;
 }

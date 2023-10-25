@@ -1,7 +1,7 @@
 import React from 'react';
 import classes from './main.module.css';
-import { Problem } from '@/components/Problem';
-import { WorkArea } from '@/components/WorkArea';
+import { Problem as Styles } from '@/components/Problem';
+import { WorkArea } from '../Src';
 
 /**
  * Renders Main component
@@ -10,7 +10,7 @@ import { WorkArea } from '@/components/WorkArea';
 export function Main() {
   return (
     <main className={classes.main}>
-      <Problem />
+      <Styles />
       <WorkArea />
     </main>
   );
