@@ -1,11 +1,4 @@
 import React from 'react';
-import {
-  useFileDataStore,
-  DirectoryNode,
-  directoryTree,
-  FileNode,
-  FileTreeNode,
-} from '@/api/hook';
 // import cx from 'clsx';
 import classes from './workArea.module.css';
 // import {
@@ -16,17 +9,18 @@ import classes from './workArea.module.css';
 // } from '@tabler/icons-react';
 // import { NavLink } from '@mantine/core';
 /**
- * Render a vs-code like file tree using directoryTree data.
+ * GraphQL API
+ *  @see https://studio.apollographql.com/public/rick-and-morty-a3b90u/variant/current/explorer
  *
- * Icons:
- * IconFileText, IconFolder, IconMinus, IconPlus
+ *  Rest API
+ *  @see https://rickandmortyapi.com/documentation/#rest
  */
 /**
  * @desc Renders WorkArea component
  * @constructor
  */
 export function WorkArea() {
-  const { data } = useFileDataStore();
+  // const { data } = useData();
 
   return <div className={classes.workArea}>{/* your code */}</div>;
 }

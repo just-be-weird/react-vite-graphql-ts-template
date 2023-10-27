@@ -19,7 +19,7 @@ import React from 'react';
 
 const meta = {
   problem: true,
-  preview: true,
+  preview: false,
   bonus: true,
   reference: false,
 };
@@ -39,24 +39,28 @@ export function Problem() {
             <Title order={3}>Problem</Title>
             <List spacing='sm' size='md' center>
               <List.Item>
-                You've been provided data of directory tree having{' '}
+                Fetch the data from given Graph/Rest point with
                 {renderHighlight(
-                  'a list of directories and associated files.',
+                  'a list of episodes with name and no.',
                   'blue',
-                  ['directories', 'files'],
+                  ['name and no', 'episodes'],
                 )}
               </List.Item>
               <List.Item>
                 Using this data{' '}
-                {renderHighlight('render a VS-code like file tree', 'blue')}.
+                {renderHighlight('create a custom data hook to fetch', 'blue')}.
               </List.Item>
               <List.Item>
-                For each directory when we hover provide an{' '}
+                For each episode{' '}
                 {renderHighlight(
-                  'option to add a new directory or file',
+                  'assign a random rating between 0 and 5',
                   'blue',
                 )}
                 .
+              </List.Item>
+              <List.Item>
+                Build a filter to{' '}
+                {renderHighlight('filter down episodes by rating', 'blue')}.
               </List.Item>
             </List>
           </Blockquote>
