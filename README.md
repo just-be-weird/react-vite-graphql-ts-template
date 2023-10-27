@@ -5,11 +5,11 @@ tools check the links.
 
 ## Prerequisite
 
-1. Version manager for the node - nvm and recommended version 🔗 [view instruction](https://github.com/nvm-sh/nvm)
-2. Yarn, install by running `npm install --global yarn`
-3. Clone the repo by running `git clone https://github.com/just-be-weird/react-vite-graphql-ts-template.git nivoda-int`
-4. Checkout `git checkout frontend/md/q/tree`
-5. Run the project by `yarn dev`
+1. Make sure you've a node version equal to higher than v18. Install node via version manager for the node - nvm 🔗 [view instruction](https://github.com/nvm-sh/nvm)
+2. Clone the repo by running `git clone https://github.com/just-be-weird/react-vite-graphql-ts-template.git nivoda-int`
+3. Checkout `git checkout frontend/md/q/tree-fri`
+4. Run `npm i`
+5. Run the project by `npm run dev`
 
 ## Challenge
 
