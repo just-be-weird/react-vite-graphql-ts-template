@@ -1,12 +1,12 @@
 import React from 'react';
 // import cx from 'clsx';
 import classes from './workArea.module.css';
-// import {
-//   IconFileText,
-//   IconFolder,
-//   IconMinus,
-//   IconPlus
-// } from '@tabler/icons-react';
+import {
+  IconStarFilled,
+  IconStar,
+  //   IconMinus,
+  //   IconPlus
+} from '@tabler/icons-react';
 // import { NavLink } from '@mantine/core';
 /**
  * GraphQL API
@@ -22,5 +22,10 @@ import classes from './workArea.module.css';
 export function WorkArea() {
   // const { data } = useData();
 
-  return <div className={classes.workArea}>{/* your code */}</div>;
+  return (
+    <div className={classes.workArea}>
+      <IconStarFilled />
+      <IconStar />
+    </div>
+  );
 }

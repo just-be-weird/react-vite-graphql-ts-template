@@ -47,19 +47,7 @@ export function Problem() {
                 )}
               </List.Item>
               <List.Item>
-                Using this data{' '}
-                {renderHighlight('create a custom data hook to fetch', 'blue')}.
-              </List.Item>
-              <List.Item>
-                For each episode{' '}
-                {renderHighlight(
-                  'assign a random rating between 0 and 5',
-                  'blue',
-                )}
-                .
-              </List.Item>
-              <List.Item>
-                Build a filter to{' '}
+                Using this data build a filter to{' '}
                 {renderHighlight('filter down episodes by rating', 'blue')}.
               </List.Item>
             </List>
