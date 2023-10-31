@@ -1,4 +1,5 @@
 import { onError } from '@apollo/client/link/error';
+import { __DEV__ } from '@/constants';
 
 /**
  * IMPORTANT: If we don't want to retry an operation, onError link's function
