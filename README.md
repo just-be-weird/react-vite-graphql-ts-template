@@ -14,10 +14,10 @@ tools check the links.
 ## Challenge
 
 1. You've been provided data having a list of episodes with `name` and characters with `picture, name`.
-2. Provide a dropdown for selecting the episode from the list.
+2. Render a dropdown for selecting a episode from the fetched episode list.
 3. For a selected episode, create a 3 X 3 grid by using first 5 characters (5 * 2 - 1 = 9).
 4. We need to make sure that all 9 items in grid are randomized.
-5. These items are clickable and if a item has previously been clicked, and they match you found Rick and Morty then keep them visible.
+5. These items are clickable and if a item has previously been clicked, and they match OR you found Rick and Morty then keep them visible.
 6. If a card has previously been clicked, and they match then keep them visible.
 7. Hide them after one second if they don't match.
 

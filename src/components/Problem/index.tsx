@@ -47,19 +47,22 @@ export function Problem() {
                 )}
               </List.Item>
               <List.Item>
-                Provide a dropdown for selecting the episode from the list.
+                Render a dropdown for selecting a episode from the fetched
+                episode list.
               </List.Item>
               <List.Item>
-                For a selected episode, create a{' '}
-                {renderHighlight('3 X 3', 'red')} grid by using first 5
-                characters {renderHighlight('(5 * 2 - 1 = 9)', 'orange')}.
+                For the selected episode, create a{' '}
+                {renderHighlight('3 X 3', 'red')} grid by{' '}
+                {renderHighlight('using first 5 characters', 'orange')} (5 * 2 -
+                1 = 9).
               </List.Item>
               <List.Item>
-                We need to make sure that all 9 items in grid are randomized.
+                We need to make sure that all{' '}
+                {renderHighlight('9 items in grid are randomized', 'red')}.
               </List.Item>
               <List.Item>
                 These items are clickable and if a item has previously been
-                clicked, and they match you found Rick and Morty then keep them
+                clicked, and they match OR you found Rick and Morty then keep them
                 visible.
               </List.Item>
               <List.Item>
@@ -81,9 +84,18 @@ export function Problem() {
         {meta.bonus && (
           <Blockquote color='orange' mt='md' icon={<IconGift />}>
             <Title mb='sm' order={4}>
-              Bonus
+              Topics
             </Title>
             <List size='md' center>
+              <List.Item>
+                Ways to optimize large list data rendering, e.g., a news feed.
+              </List.Item>
+              <List.Item>
+                Process to refactor a big module.
+              </List.Item>
+              <List.Item>
+                Error handling on client side.
+              </List.Item>
               <List.Item>
                 Test when grid items are rendered when an episode is selected.
               </List.Item>
