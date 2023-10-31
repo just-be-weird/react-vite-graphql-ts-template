@@ -4,8 +4,11 @@ This starter Vite project includes a minimal setup, if you want to learn more on
 tools check the links.
 
 ## Prerequisite
-1. Version manager for the node - nvm and recommended version 🔗 [view instruction](https://github.com/nvm-sh/nvm)
-2. Yarn, install by running `npm install --global yarn`
+1. Requires node version v20.7.0 or any v18+
+2. Version manager for the node - nvm and recommended version 🔗 [view instruction](https://github.com/nvm-sh/nvm)
+3. Switch to correct node version by running `nvm use`
+4. Run `npm i` to install packages
+5. Switch to correct branch and then run the project by `npm run dev`
 
 ## Features
 
