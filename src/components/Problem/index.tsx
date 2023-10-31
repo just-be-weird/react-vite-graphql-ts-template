@@ -47,7 +47,7 @@ export function Problem() {
                 )}
               </List.Item>
               <List.Item>
-                Render a dropdown for selecting a episode from the fetched
+                Render a dropdown for selecting an episode from the fetched
                 episode list.
               </List.Item>
               <List.Item>
@@ -58,12 +58,12 @@ export function Problem() {
               </List.Item>
               <List.Item>
                 We need to make sure that all{' '}
-                {renderHighlight('9 items in grid are randomized', 'red')}.
+                {renderHighlight('9 items in the grid are randomized', 'red')}.
               </List.Item>
               <List.Item>
-                These items are clickable and if a item has previously been
-                clicked, and they match OR you found Rick and Morty then keep them
-                visible.
+                These items are clickable and if an item has previously been
+                clicked, and they match OR you found Rick and Morty then keep
+                them visible.
               </List.Item>
               <List.Item>
                 Hide them after one second if they don't match.
@@ -90,12 +90,8 @@ export function Problem() {
               <List.Item>
                 Ways to optimize large list data rendering, e.g., a news feed.
               </List.Item>
-              <List.Item>
-                Process to refactor a big module.
-              </List.Item>
-              <List.Item>
-                Error handling on client side.
-              </List.Item>
+              <List.Item>Process to refactor a big module.</List.Item>
+              <List.Item>Error handling on client side.</List.Item>
               <List.Item>
                 Test when grid items are rendered when an episode is selected.
               </List.Item>
