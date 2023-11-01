@@ -20,7 +20,7 @@ import React from 'react';
 const meta = {
   problem: true,
   preview: false,
-  bonus: true,
+  bonus: false,
   reference: false,
 };
 export function Problem() {
@@ -41,14 +41,26 @@ export function Problem() {
               <List.Item>
                 Fetch the data from given Graph/Rest point with
                 {renderHighlight(
-                  'a list of episodes with name and no.',
+                  'a list of episodes with name and episode number.',
                   'blue',
-                  ['name and no', 'episodes'],
+                  ['name and episode number', 'episodes'],
                 )}
               </List.Item>
               <List.Item>
+                To each episode{' '}
+                {renderHighlight(
+                  'assign a random rating between 0 to 5',
+                  'orange',
+                )}
+                .
+              </List.Item>
+              <List.Item>
                 Using this data build a filter to{' '}
-                {renderHighlight('filter down episodes by rating', 'blue')}.
+                {renderHighlight(
+                  'filter down episodes by rating. eg, 1,2,3,4,5.',
+                  'pink',
+                )}
+                .
               </List.Item>
             </List>
           </Blockquote>
