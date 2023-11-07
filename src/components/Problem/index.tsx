@@ -19,7 +19,7 @@ import React from 'react';
 
 const meta = {
   problem: true,
-  preview: true,
+  preview: false,
   bonus: true,
   reference: true,
 };
