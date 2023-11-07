@@ -51,22 +51,28 @@ export function Problem() {
                 episode list.
               </List.Item>
               <List.Item>
-                For the selected episode, create a{' '}
-                {renderHighlight('3 X 3', 'red')} grid by{' '}
-                {renderHighlight('using first 5 characters', 'orange')} (5 * 2 -
-                1 = 9).
+                Now write code to build a image player state machine that can
+                transition between different states (
+                {renderHighlight(
+                  'idle, playing, paused, buffering, and stop',
+                  'blue',
+                )}
+                ) based on user inputs.
               </List.Item>
               <List.Item>
-                We need to make sure that all{' '}
-                {renderHighlight('9 items in the grid are randomized', 'red')}.
+                When pressed {renderHighlight('playing', 'green')} transition
+                images for 4sec.
               </List.Item>
               <List.Item>
-                These items are clickable and if an item has previously been
-                clicked, and they match OR you found Rick and Morty then keep
-                them visible.
+                When pressed {renderHighlight('paused', 'yellow')} hold on to
+                the current image for 4 seconds until play is pressed again.
               </List.Item>
               <List.Item>
-                Hide them after one second if they don't match.
+                When pressed {renderHighlight('buffering', 'orange')} hold
+                current image for 1 sec and then transition back to playing.
+              </List.Item>
+              <List.Item>
+                When pressed {renderHighlight('stop', 'red')} end transition.
               </List.Item>
             </List>
           </Blockquote>
@@ -88,16 +94,18 @@ export function Problem() {
             </Title>
             <List size='md' center>
               <List.Item>
-                Ways to optimize large list data rendering, e.g., a news feed.
-              </List.Item>
-              <List.Item>Process to refactor a big module.</List.Item>
-              <List.Item>Error handling on client side.</List.Item>
-              <List.Item>
-                Test when grid items are rendered when an episode is selected.
+                How do you handle accessibility in React applications?
               </List.Item>
               <List.Item>
-                Use TS to type e.g. function arg, return type, data, local vars
-                and the response.
+                How do you deploy React applications to production?
+              </List.Item>
+              <List.Item>
+                What are some of the most interesting or challenging projects
+                you have worked on as a React engineer?
+              </List.Item>
+              <List.Item>
+                What are some of the latest trends and developments in the React
+                ecosystem?
               </List.Item>
             </List>
           </Blockquote>
