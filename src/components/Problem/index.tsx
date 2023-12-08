@@ -39,37 +39,26 @@ export function Problem() {
             <Title order={3}>Problem</Title>
             <List spacing='sm' size='md' center>
               <List.Item>
-                You've been provided data having{' '}
-                {renderHighlight(
-                  'a list of episodes with name and characters with picture and name.',
-                  'red',
-                  ['name', 'picture'],
-                )}
+                You've to use the endpoint to get the data having a list of
+                episodes
               </List.Item>
               <List.Item>
-                Render a dropdown for selecting an episode from the fetched
-                episode list.
+                Then for this list render a dropdown for selecting a episode
+                from the fetched episode list.
               </List.Item>
               <List.Item>
                 Now write code to build a image player state machine that can
                 transition between different states (
-                {renderHighlight(
-                  'idle, playing, paused, buffering, and stop',
-                  'blue',
-                )}
-                ) based on user inputs.
+                {renderHighlight('idle, playing, paused, and stop', 'blue')})
+                based on user inputs.
               </List.Item>
               <List.Item>
-                When pressed {renderHighlight('playing', 'green')} transition
-                images for 4sec.
+                When pressed playing transition images after 1sec until you
+                reach end.
               </List.Item>
               <List.Item>
-                When pressed {renderHighlight('paused', 'yellow')} hold on to
-                the current image for 4 seconds until play is pressed again.
-              </List.Item>
-              <List.Item>
-                When pressed {renderHighlight('buffering', 'orange')} hold
-                current image for 1 sec and then transition back to playing.
+                When pressed paused hold on to the current image until play is
+                pressed again.
               </List.Item>
               <List.Item>
                 When pressed {renderHighlight('stop', 'red')} end transition.
