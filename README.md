@@ -7,19 +7,19 @@ tools check the links.
 
 1. Make sure you've a node version equal to higher than v18. Install node via version manager for the node - nvm 🔗 [view instruction](https://github.com/nvm-sh/nvm)
 2. Clone the repo by running `git clone https://github.com/just-be-weird/react-vite-graphql-ts-template.git nivoda-int`
-3. Checkout `git checkout ess/q/memory-game`
+3. Checkout `git checkout today`
 4. Run `npm i`
 5. Run the project by `npm run dev`
 
 ## Challenge
 
-1. You've been provided data having a list of episodes with `name` and characters with `picture, name`.
-2. Render a dropdown for selecting a episode from the fetched episode list.
-3. For a selected episode, create a 3 X 3 grid by using first 5 characters (5 * 2 - 1 = 9).
-4. We need to make sure that all 9 items in grid are randomized.
-5. These items are clickable and if a item has previously been clicked, and they match OR you found Rick and Morty then keep them visible.
-6. If a card has previously been clicked, and they match then keep them visible.
-7. Hide them after one second if they don't match.
+1. You've to use the endpoint to get the data having a list of episodes.
+2. Then for this list render a dropdown for selecting a episode from the fetched episode list.
+3. When a episode is selected fetch its character data and use it for image transition.
+4. Now write code to build a image player state machine that can transition between different states (idle, playing, paused, buffering, and stop) based on user inputs.
+5. When pressed playing transition images after 1sec until you reach end.
+6. When pressed paused hold on to the current image until play is pressed again.
+7. When pressed stop end transition.
 
 **Bonus**: 
 * Test when grid items are rendered when an episode is selected.
