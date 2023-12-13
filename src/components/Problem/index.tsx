@@ -49,12 +49,16 @@ export function Problem() {
               <List.Item>
                 Now write code to build a image player state machine that can
                 transition between different states (
-                {renderHighlight('idle, playing, paused, and stop', 'blue')})
-                based on user inputs.
+                {renderHighlight('idle, paused, and stop', 'blue')}) based on
+                user inputs.
               </List.Item>
               <List.Item>
-                When pressed playing transition images after 1sec until you
-                reach end.
+                When pressed{' '}
+                {renderHighlight(
+                  'playing transition images after 1sec',
+                  'blue',
+                )}{' '}
+                until you reach end.
               </List.Item>
               <List.Item>
                 When pressed paused hold on to the current image until play is

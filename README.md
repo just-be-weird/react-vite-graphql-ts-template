@@ -16,7 +16,7 @@ tools check the links.
 1. You've to use the endpoint to get the data having a list of episodes.
 2. Then for this list render a dropdown for selecting a episode from the fetched episode list.
 3. When a episode is selected fetch its character data and use it for image transition (image of character).
-4. Now write code to build a image player state machine that can transition between different states (idle, playing, paused, buffering, and stop) based on user inputs.
+4. Now write code to build a image player state machine that can transition between different states (idle, playing, paused, and stop) based on user inputs.
 5. When pressed playing transition images after 1sec until you reach end.
 6. When pressed paused hold on to the current image until play is pressed again.
 7. When pressed stop end transition.
