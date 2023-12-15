@@ -41,7 +41,7 @@ export function Problem() {
               <List.Item>
                 Fetch the data from given Graph/Rest point with
                 {renderHighlight(
-                  'a list of episodes with name and episode number.',
+                  ' a list of episodes with name and episode number.',
                   'blue',
                   ['name and episode number', 'episodes'],
                 )}
@@ -49,7 +49,7 @@ export function Problem() {
               <List.Item>
                 To each episode{' '}
                 {renderHighlight(
-                  'assign a random rating between 0 to 5',
+                  'assign a random rating between 0 and 5',
                   'orange',
                 )}
                 .

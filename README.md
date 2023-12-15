@@ -13,9 +13,9 @@ tools check the links.
 
 ## Challenge
 
-1. You've been provided data of directory tree having a list of directories and associated files.
-2. Using this data render a VS-code like file tree.
-3. For each directory when we hover provide an option to add a new directory or file.
+1. Fetch the data from given Graph/Rest point with a list of episodes with name and episode number.
+2. To each episode assign a random rating between 0 and 5.
+3. Using this data build a filter to filter down episodes by rating. eg, 1,2,3,4,5.
 
 **Bonus**:
 
