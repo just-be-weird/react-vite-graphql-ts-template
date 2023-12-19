@@ -13,9 +13,9 @@ tools check the links.
 
 ## Challenge
 
-1. Fetch the data from given Graph/Rest point with a list of episodes with name and episode number.
-2. To each episode assign a random rating between 0 and 5.
-3. Using this data build a filter to filter down episodes by rating. eg, 1,2,3,4,5.
+1. Fetch the data from given Graph/Rest endpoint point. This endpoints' response is a list of episodes, with each episode having name and episode number.
+2. First task is for each episode assign a random rating between 0 and 5.
+3. Using this data build a search by episode name filter box and filter by episode rating using rating filter where rating can be 1,2,3,4,5.
 
 **Bonus**:
 

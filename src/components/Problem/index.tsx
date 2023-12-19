@@ -39,15 +39,19 @@ export function Problem() {
             <Title order={3}>Problem</Title>
             <List spacing='sm' size='md' center>
               <List.Item>
-                Fetch the data from given Graph/Rest point with
+                Fetch the data from given Graph/Rest endpoint point. This
+                endpoints' response is
                 {renderHighlight(
-                  ' a list of episodes with name and episode number.',
+                  ' a list of episodes, with each episode having name and episode number.',
                   'blue',
-                  ['name and episode number', 'episodes'],
+                  [
+                    'a list of episodes',
+                    'episode having name and episode number',
+                  ],
                 )}
               </List.Item>
               <List.Item>
-                To each episode{' '}
+                First task is for each episode{' '}
                 {renderHighlight(
                   'assign a random rating between 0 and 5',
                   'orange',
@@ -55,9 +59,9 @@ export function Problem() {
                 .
               </List.Item>
               <List.Item>
-                Using this data build a filter to{' '}
+                Using this data{' '}
                 {renderHighlight(
-                  'filter down episodes by rating. eg, 1,2,3,4,5.',
+                  'build a search by episode name filter box and filter by episode rating using rating filter where rating can be 1,2,3,4,5',
                   'pink',
                 )}
                 .
