@@ -7,6 +7,7 @@ import {
   //   IconMinus,
   //   IconPlus
 } from '@tabler/icons-react';
+import { Button, Flex } from '@mantine/core';
 // import { NavLink } from '@mantine/core';
 /**
  * GraphQL API
@@ -24,8 +25,23 @@ export function WorkArea() {
 
   return (
     <div className={classes.workArea}>
-      <IconStarFilled />
-      <IconStar />
+      <Flex gap="sm" pt="md">
+        <Button>
+          <IconStarFilled /> <IconStar />
+        </Button>
+        <Button>
+          <IconStarFilled /> <IconStar />
+        </Button>{' '}
+        <Button>
+          <IconStarFilled /> <IconStar />
+        </Button>{' '}
+        <Button>
+          <IconStarFilled /> <IconStar />
+        </Button>{' '}
+        <Button>
+          <IconStarFilled /> <IconStar />
+        </Button>
+      </Flex>
     </div>
   );
 }
