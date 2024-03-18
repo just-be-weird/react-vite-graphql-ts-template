@@ -39,32 +39,33 @@ export function Problem() {
             <Title order={3}>Problem</Title>
             <List spacing='sm' size='md' center>
               <List.Item>
-                Fetch the data from given Graph/Rest endpoint point. This
-                endpoints' response is
-                {renderHighlight(
-                  ' a list of episodes, with each episode having name and episode number.',
-                  'blue',
-                  [
-                    'a list of episodes',
-                    'episode having name and episode number',
-                  ],
-                )}
+                {renderHighlight('Data Retrieval', 'orange')}: We'll begin by
+                fetching data from the provided Graph/REST endpoint. This
+                endpoint should return a list of episodes, each list item
+                containing information like name, episode number, and
+                potentially a section dedicated to displaying the first three
+                characters' image previews.
               </List.Item>
               <List.Item>
-                First task is for each episode{' '}
-                {renderHighlight(
-                  'assign a random rating between 0 and 5',
-                  'orange',
-                )}
-                .
+                {renderHighlight('Random Rating Assignment', 'orange')}: To add
+                some engagement, we'll assign a random rating between 0 and 5 to
+                each episode within the retrieved data.
               </List.Item>
               <List.Item>
-                Using this data{' '}
-                {renderHighlight(
-                  'build a search by episode name filter box and filter by episode rating using rating filter where rating can be 1,2,3,4,5',
-                  'pink',
-                )}
-                .
+                {renderHighlight('Interactive Filtering', 'orange')}: Leveraging
+                the updated data, we'll build a user-friendly search experience.
+                This will include two filtering functionalities:
+              </List.Item>
+              <List.Item>
+                {renderHighlight('Search by Episode Name', 'red')}: Users can
+                search for specific episodes by entering their names in a
+                dedicated filter box.
+              </List.Item>
+              <List.Item>
+                {renderHighlight('Filter by Episode Rating', 'red')}:
+                Additionally, users can filter the displayed episodes based on
+                their assigned ratings. The filter options will include
+                individual buttons or sliders for ratings between 1 and 5.
               </List.Item>
             </List>
           </Blockquote>

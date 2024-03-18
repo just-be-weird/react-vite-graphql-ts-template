@@ -5,22 +5,28 @@ tools check the links.
 
 ## Prerequisite
 
+### For locally cloned repo
+
 1. Make sure you've a node version equal to higher than v18. Install node via version manager for the node - nvm 🔗 [view instruction](https://github.com/nvm-sh/nvm)
 2. Clone the repo by running `git clone https://github.com/just-be-weird/react-vite-graphql-ts-template.git nivoda-int`
 3. Checkout `git checkout frontend/md/q/tree-fri`
 4. Run `npm i`
 5. Run the project by `npm run dev`
 
+### Using Codesandbox.io
+
+1. Need to Sign in to [codesandbox](https://codesandbox.io/) using your github account
+
 ## Challenge
 
-1. Fetch the data from given Graph/Rest endpoint point. This endpoints' response is a list of episodes, with each episode having name and episode number.
-2. First task is for each episode assign a random rating between 0 and 5.
-3. Using this data build a search by episode name filter box and filter by episode rating using rating filter where rating can be 1,2,3,4,5.
+1. **Data Retrieval:** We'll begin by fetching data from the provided [Graph](https://rickandmortyapi.com/documentation/#graphql)/[REST](https://rickandmortyapi.com/documentation/#rest) endpoint.
+This endpoint should return a list of episodes, each list item containing information like name, episode number, and potentially a section dedicated to displaying the first three characters' image previews.
 
-**Bonus**:
+2. **Random Rating Assignment:** To add some engagement, we'll assign a random rating between 0 and 5 to each episode within the retrieved data.
 
-- Test when a directory is expanded shows correct content and hides it when clicked again.
-- Use TS to type e.g. function arg, return type, data, local vars and the response.
+3. **Interactive Filtering:** Leveraging the updated data, we'll build a user-friendly search experience. This will include two filtering functionalities:
+   1. **Search by Episode Name:** Users can search for specific episodes by entering their names in a dedicated filter box.
+   2. **Filter by Episode Rating:** Additionally, users can filter the displayed episodes based on their assigned ratings. The filter options will include individual buttons or sliders for ratings between 1 and 5.
 
 ## Features
 
@@ -28,7 +34,7 @@ This template comes with the following features:
 
 ### Core UI
 
-- [Mantine UI — Docs](https://mantine.dev/core/app-shell/)
+- [Mantine UI Optional — Docs](https://mantine.dev/core/app-shell/)
 - [Graphql — Docs](https://graphql.org/learn/)
 - [React — Docs](https://react.dev/reference/react/)
 - [Tabler icons — Docs](https://tabler-icons.io/)
