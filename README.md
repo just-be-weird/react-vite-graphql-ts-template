@@ -19,8 +19,8 @@ tools check the links.
 
 ## Challenge
 
-1. **Data Retrieval:** We'll begin by fetching data from the provided [Graph](https://rickandmortyapi.com/documentation/#graphql)/[REST](https://rickandmortyapi.com/documentation/#rest) endpoint.
-This endpoint should return a list of episodes, each list item containing information like name, episode number, and potentially a section dedicated to displaying the first three characters' image previews.
+1. **Data Retrieval:** We'll begin by fetching data from the provided [Graph](https://rickandmortyapi.com/documentation/#graphql)/[REST](https://rickandmortyapi.com/api/episode) endpoint.
+This endpoint should return a list of episodes, each list item containing information like name, episode number, and a section dedicated to displaying the first three characters' image previews along with a button to load more characters.
 
 2. **Random Rating Assignment:** To add some engagement, we'll assign a random rating between 0 and 5 to each episode within the retrieved data.
 

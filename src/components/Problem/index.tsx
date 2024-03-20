@@ -42,9 +42,9 @@ export function Problem() {
                 {renderHighlight('Data Retrieval', 'orange')}: We'll begin by
                 fetching data from the provided Graph/REST endpoint. This
                 endpoint should return a list of episodes, each list item
-                containing information like name, episode number, and
-                potentially a section dedicated to displaying the first three
-                characters' image previews.
+                containing information like name, episode number, and a section
+                dedicated to displaying the first three characters' image
+                previews along with a button to load more characters.
               </List.Item>
               <List.Item>
                 {renderHighlight('Random Rating Assignment', 'orange')}: To add
@@ -121,7 +121,9 @@ export function Problem() {
           </Blockquote>
         )}
       </Drawer>
-      <Button onClick={open}>Problem description</Button>
+      <Button onClick={open} color='grape'>
+        Problem description
+      </Button>
     </>
   );
 }
