@@ -40,16 +40,35 @@ export function Problem() {
             <List spacing='sm' size='md' center>
               <List.Item>
                 {renderHighlight('Data Retrieval', 'orange')}: We'll begin by
-                fetching data from the provided Graph/REST endpoint. This
-                endpoint should return a list of episodes, each list item
-                containing information like name, episode number, and a section
-                dedicated to displaying the first three characters' image
-                previews along with a button to load more characters.
+                fetching data from the provided{' '}
+                <a
+                  href='https://rickandmortyapi.com/documentation/#graphql'
+                  rel='noopener'
+                  target='_blank'
+                >
+                  Graph
+                </a>{' '}
+                /{' '}
+                <a
+                  href='https://rickandmortyapi.com/api/episode'
+                  rel='noopener'
+                  target='_blank'
+                >
+                  REST
+                </a>{' '}
+                endpoint. This endpoint should return a list of episodes, each
+                list item containing information like name, episode number, and
+                a section dedicated to displaying the first three characters'
+                image previews along with a button to load more characters.
               </List.Item>
               <List.Item>
                 {renderHighlight('Random Rating Assignment', 'orange')}: To add
-                some engagement, we'll assign a random rating between 0 and 5 to
-                each episode within the retrieved data.
+                some engagement, we'll{' '}
+                {renderHighlight(
+                  'assign a random rating between 0 and 5',
+                  'blue',
+                )}
+                , to each episode within the retrieved data.
               </List.Item>
               <List.Item>
                 {renderHighlight('Interactive Filtering', 'orange')}: Leveraging
