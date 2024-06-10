@@ -11,7 +11,7 @@ function MyComponent({ products }) {
       You clicked {count} times
       <ul>
         {products.map((product) => (
-          <li>{product.name}</li> // Missing key prop
+          <li>{product.name}</li>
         ))}
       </ul>
     </div>

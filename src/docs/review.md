@@ -19,7 +19,7 @@ function UserList({ users }) {
     <>
       <ul>
         {users.map((user) => (
-          <li key={user.id}>
+          <li>
             {user.isActive ? (
               <span>Active - {user.name}</span>
             ) : (
