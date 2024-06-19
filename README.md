@@ -13,14 +13,19 @@ tools check the links.
 
 ## Challenge
 
-1. You've been provided data of directory tree having a list of directories and associated files.
-2. Using this data render a VS-code like file tree.
+1. You've been provided JSON data of file directory structure having a list of directories and its associated files.
+2. Using this data, render an expanding file tree/explorer.
 3. For each directory when we hover provide an option to add a new directory or file.
 
-**Bonus**:
+### Note
+> Hook to get this data is in `src/api/hook/useFileDataStore.ts`.
+> 
+> You can start your work form this file `src/components/WorkArea/index.tsx`.
 
-- Test when a directory is expanded shows correct content and hides it when clicked again.
-- Use TS to type e.g. function arg, return type, data, local vars and the response.
+**Extra**:
+
+- How would you test when a directory is expanded shows the correct content and hides it when clicked again?
+- Use TS to type e.g., function arg, return type, data, local vars and the response.
 
 ## Features
 

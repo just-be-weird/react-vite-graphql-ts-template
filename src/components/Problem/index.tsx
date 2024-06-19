@@ -39,16 +39,21 @@ export function Problem() {
             <Title order={3}>Problem</Title>
             <List spacing='sm' size='md' center>
               <List.Item>
-                You've been provided data of directory tree having{' '}
+                You've been provided JSON data of file directory structure
+                having{' '}
                 {renderHighlight(
-                  'a list of directories and associated files.',
+                  'a list of directories and its associated files.',
                   'blue',
                   ['directories', 'files'],
                 )}
               </List.Item>
               <List.Item>
                 Using this data{' '}
-                {renderHighlight('render a VS-code like file tree', 'blue')}.
+                {renderHighlight(
+                  'render a expanding file tree/explorer',
+                  'blue',
+                )}
+                .
               </List.Item>
               <List.Item>
                 For each directory when we hover provide an{' '}
@@ -57,6 +62,18 @@ export function Problem() {
                   'blue',
                 )}
                 .
+              </List.Item>
+              <List.Item>
+                {renderHighlight('Note:', 'orange')} Hook to get this data is in{' '}
+                {renderHighlight('src/api/hook/useFileDataStore.ts', 'orange')}
+              </List.Item>
+              <List.Item>
+                {renderHighlight('Note:', 'orange')} You can start work form
+                this file{' '}
+                {renderHighlight(
+                  'src/components/WorkArea/index.tsx.',
+                  'orange',
+                )}
               </List.Item>
             </List>
           </Blockquote>
@@ -74,15 +91,15 @@ export function Problem() {
         {meta.bonus && (
           <Blockquote color='orange' mt='md' icon={<IconGift />}>
             <Title mb='sm' order={4}>
-              Bonus
+              Good to have
             </Title>
             <List spacing='sm' size='md' center>
               <List.Item>
-                Test when a directory is expanded shows correct content and
-                hides it when clicked again.
+                How would you test when a directory is expanded shows the
+                correct content and hides it when clicked again?
               </List.Item>
               <List.Item>
-                Use TS to type e.g. function arg, return type, data, local vars
+                Use TS to type e.g., function arg, return type, data, local vars
                 and the response.
               </List.Item>
             </List>

@@ -1,5 +1,3 @@
-import { number } from 'prop-types';
-
 export interface FileNode {
   path: string;
   name: string;
@@ -27,5 +25,5 @@ export type CreateNode = {
 export type TargetNode = {
   ci: number;
   pi: number | null;
-  type: NodeType|'';
+  type: NodeType | '';
 };
