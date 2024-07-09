@@ -1,6 +1,5 @@
 import React from 'react';
 import classes from './main.module.css';
-import { Problem as Styles } from '@/components/Problem';
 import { WorkArea } from '../Src';
 
 /**
@@ -10,7 +9,6 @@ import { WorkArea } from '../Src';
 export function Main() {
   return (
     <main className={classes.main}>
-      <Styles />
       <WorkArea />
     </main>
   );
