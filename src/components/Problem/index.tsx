@@ -88,12 +88,18 @@ export function Problem() {
             </Title>
             <List size='md' center>
               <List.Item>
-                Ways to optimize large list data rendering, e.g., a news feed.
+                CSRF, why we need it and how to implement it?
+              </List.Item>
+              <List.Item>
+                Mention ways to decrease page load time for react web apps?
               </List.Item>
               <List.Item>Process to refactor a big module.</List.Item>
               <List.Item>Error handling on client side.</List.Item>
               <List.Item>
-                Test when grid items are rendered when an episode is selected.
+                What is the best way to include CSS Styling in HTML?
+              </List.Item>
+              <List.Item>
+                What are the different ways to hide an Element using CSS?
               </List.Item>
               <List.Item>
                 Use TS to type e.g. function arg, return type, data, local vars

@@ -13,7 +13,28 @@
 
  Optimize the function for time and space complexity
  */
-const results = filterProductsByPrice(products, maxPrice);
+function filterProductsByPrice(products, maxPrice) {
+    // Optimized for time and space complexity:
+    // 1. Early return for empty array or invalid input:
+    if (!products || products.length === 0 || typeof maxPrice !== 'number') {
+        return [];
+    }
+
+    // 2. Efficient in-place filtering (modifies original array):
+    let filteredLength = 0;
+    for (let i = products.length - 1; i >= 0; i--) {
+        if (products[i].price > maxPrice) {
+            products.splice(i, 1);
+        } else {
+            filteredLength++;
+        }
+    }
+
+    // 3. Optional: Shorten original array (if desired):
+    products.length = filteredLength;
+
+    return products;
+}
 ```
 
 ### Technical Discussion (30-35 minutes)
