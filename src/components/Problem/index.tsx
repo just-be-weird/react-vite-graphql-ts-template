@@ -39,35 +39,47 @@ export function Problem() {
             <Title order={3}>Problem</Title>
             <List spacing='sm' size='md' center>
               <List.Item>
-                You've been provided data having{' '}
-                {renderHighlight(
-                  'a list of episodes with name and characters with picture and name.',
-                  'red',
-                  ['name', 'picture'],
-                )}
+                Create a simple Tic-Tac-Toe game using React. The game should
+                have the following functionality:
               </List.Item>
               <List.Item>
-                Render a dropdown for selecting an episode from the fetched
-                episode list.
+                A 3x3 grid of squares, where each square can be empty, filled
+                with an {renderHighlight('"X"', 'orange')} or an{' '}
+                {renderHighlight('"O"', 'orange')}.
               </List.Item>
               <List.Item>
-                For the selected episode, create a{' '}
-                {renderHighlight('3 X 3', 'red')} grid by{' '}
-                {renderHighlight('using first 5 characters', 'orange')} (5 * 2 -
-                1 = 9).
+                The initial state of the board should be empty.
               </List.Item>
               <List.Item>
-                We need to make sure that all{' '}
-                {renderHighlight('9 items in the grid are randomized', 'red')}.
+                The game starts with player {renderHighlight('"X"', 'orange')}.
               </List.Item>
               <List.Item>
-                These items are clickable and if an item has previously been
-                clicked, and they match OR you found Rick and Morty then keep
-                them visible.
+                Players alternate turns, with {renderHighlight('"O"', 'orange')}{' '}
+                following {renderHighlight('"X"', 'orange')}.
               </List.Item>
               <List.Item>
-                Hide them after one second if they don't match.
+                The game ends when a player wins or there's a draw.
               </List.Item>
+
+              <List.Item>
+                A player wins if they have three of their symbols in a row,
+                column, or diagonal.
+              </List.Item>
+
+              <List.Item>
+                A draw occurs if all squares are filled and no player has won.
+              </List.Item>
+
+              <List.Item>
+                A clear and intuitive interface that allows players to click on
+                squares to make their moves.
+              </List.Item>
+
+              <List.Item>
+                Visual indicators to show the current player and the winner
+              </List.Item>
+
+              <List.Item>A way to restart the game.</List.Item>
             </List>
           </Blockquote>
         )}
@@ -78,7 +90,7 @@ export function Problem() {
             icon={<IconPresentationAnalytics />}
           >
             <Title order={4}>Preview</Title>
-            <ThemeProvider name='P1+G' />
+            <ThemeProvider name='ttt' />
           </Blockquote>
         )}
         {meta.bonus && (
