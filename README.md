@@ -1,7 +1,7 @@
 # react vite graphql ts template
 
-This starter Vite project includes a minimal setup, if you want to learn more on
-tools check the links.
+Problem: https://docs.google.com/document/d/18XPdULwamW-A3DdZqAkWrW9eNadXj9yCIZPsTeD-EWw/edit
+Codeshare https://codeshare.io/1V0Wvq
 
 ## Prerequisite
 1. Requires node version v20.7.0 or any v18+
