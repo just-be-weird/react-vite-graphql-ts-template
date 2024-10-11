@@ -13,7 +13,6 @@ tools check the links.
 
 ## Challenge
 
-- We need to design
 - Render cards having character image, name and gender
 - Provide a add to cart button to add the character in cart.
 - Provide a add to shortlist button to add the character in shortlist.
