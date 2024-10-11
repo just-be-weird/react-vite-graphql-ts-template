@@ -28,28 +28,16 @@ export function Problem() {
               color='red'
               highlight={['name', 'picture']}
             >
-              to get a list of characters with picture and name name.
+              to get a list of characters with picture and name.
             </Highlight>
           </List.Item>
           <List.Item>
-            Provide a dropdown for selecting two characters from the list.
+            Render cards having character image, name and gender
           </List.Item>
           <List.Item>
-            Create a 3 X 3 grid with selected characters and place them in
-            random locations.
+            Provide a add to cart button to add the character in cart.
           </List.Item>
-          <List.Item>You can click on any of these individual cards.</List.Item>
-          <List.Item>
-            If a card has previously been clicked, and they match with selected
-            characters then keep them visible.
-          </List.Item>
-          <List.Item>
-            Hide them after one second if they don't match and swap the
-            characters.
-          </List.Item>
-          <List.Item>
-            If you find both the characters,then show a dialog "You won!"
-          </List.Item>
+          <List.Item>Provide a add to shortlist button to add the character in shortlist.</List.Item>
           <List.Item
             icon={
               <ThemeIcon color='blue' size={16} radius='xl'>

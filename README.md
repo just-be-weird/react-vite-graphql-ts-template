@@ -13,13 +13,10 @@ tools check the links.
 
 ## Challenge
 
-- Use Rick and morty API to get a list of characters with picture and name name.
-- Provide a dropdown for selecting two characters from the list.
-- Create a 3 X 3 grid with selected characters and place them in random locations.
-- You can click on any of these individual cards.
-- If a card has previously been clicked, and they match with selected characters then keep them visible.
-- Hide them after one second if they don't match and swap the characters.
-- If you find both the characters, then show a dialog "You won!"
+- We need to design
+- Render cards having character image, name and gender
+- Provide a add to cart button to add the character in cart.
+- Provide a add to shortlist button to add the character in shortlist.
 
 **Bonus**: Use TS to type e.g. function arg, return type, data, local vars and the response.
 
